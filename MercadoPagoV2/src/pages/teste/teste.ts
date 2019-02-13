@@ -51,4 +51,8 @@ export class TestePage {
     console.log('ID:' , valor2.id);
     this.valorId = valor2.id;
   }
+
+  enviar() {
+    console.log('Pediu para enviar');
+  }
 }
