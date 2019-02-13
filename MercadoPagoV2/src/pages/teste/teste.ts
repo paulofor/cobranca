@@ -18,6 +18,8 @@ declare var Mercadopago: any;
 })
 export class TestePage {
 
+  valorId:string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -45,6 +47,8 @@ export class TestePage {
 
   sdkResponseHandler(valor, valor2) {
     console.log('acessou response' , valor);
-    console.log('param2' , valor2);
+    console.log('token:' , valor2);
+    console.log('ID:' , valor2.id);
+    this.valorId = valor2.id;
   }
 }
