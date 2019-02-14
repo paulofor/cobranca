@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MercadoPagoApi } from '../../app/shared/sdk/index';
 
 declare var Mercadopago: any;
 
@@ -20,7 +21,8 @@ export class TestePage {
 
   valorId:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+              private srv: MercadoPagoApi) {
   }
 
   ionViewDidLoad() {
@@ -54,5 +56,9 @@ export class TestePage {
 
   enviar() {
     console.log('Pediu para enviar');
+    this.srv.EfetuaCompra(this.valorId)
+      .subscribe((res) => {
+        console.log('Resultado: ' , res);
+      });
   }
 }

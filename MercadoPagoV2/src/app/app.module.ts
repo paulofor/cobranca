@@ -9,6 +9,10 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TestePage } from '../pages/teste/teste';
+import { MercadoPagoApi, SDKModels, LoopBackAuth, InternalStorage } from './shared/sdk/index';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { SocketConnection } from './shared/sdk/sockets/socket.connections';
+import { SocketDriver } from './shared/sdk/sockets/socket.driver';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,7 @@ import { TestePage } from '../pages/teste/teste';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,9 +34,18 @@ import { TestePage } from '../pages/teste/teste';
     TestePage
   ],
   providers: [
+
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    HttpClient, 
+    SocketConnection  , 
+    SocketDriver,
+    SDKModels,
+    LoopBackAuth,
+    InternalStorage,
+    MercadoPagoApi,
+
   ]
 })
 export class AppModule {}
