@@ -21,22 +21,22 @@ module.exports = function (Mercadopago) {
 
         var doPayment = mp.post("/v1/payments",
             {
-                "transaction_amount": 2,
+                "transaction_amount": 3.50,
                 "token": token,
-                "description": "Descricao",
+                "description": "Teste do Paulo",
                 "installments": 1,
                 "payment_method_id": "visa",
                 "payer": {
-                    "email": "test_user_19653727@testuser.com"
+                    "email": "paforestieri@stefanini.com"
                 }
             });
 
         doPayment.then(
             function (payment) {
-                console.log(payment);
+                console.log('Pgto:' , payment);
             },
             function (error) {
-                console.log(error);
+                console.log('Erro:' , error);
             });
 
 
