@@ -34,6 +34,31 @@
           "verb": "post"
         }
       ]
+    },
+    "ConsultaCompra": {
+      "accepts": [
+        {
+          "arg": "idPagamento",
+          "type": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "resposta",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/consultaCompra",
+          "verb": "get"
+        }
+      ]
     }
   }
 }

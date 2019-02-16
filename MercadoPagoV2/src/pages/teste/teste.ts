@@ -35,11 +35,11 @@ export class TestePage {
     Mercadopago.clearSession();
     Mercadopago.setPublishableKey("APP_USR-f9c3c300-bab0-4ae0-b5a5-e6c68f7d5b46");
     Mercadopago.createToken({
-      "cardNumber" : '4012001037141112',
-      "securityCode" : '123' ,
-      "cardExpirationMonth" : '12' ,
-      "cardExpirationYear" : '22',
-      "cardholderName" : 'XXXX XXXX XXXXX',
+      "cardNumber" : '423075026188XXXX',
+      "securityCode" : '597' ,
+      "cardExpirationMonth" : '01' ,
+      "cardExpirationYear" : '27',
+      "cardholderName" : 'Paulo L Forestieri',
       "docType": 'CPF',
       "docNumber": '01114740780',
       "installments": 1

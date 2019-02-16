@@ -4,6 +4,30 @@ var MP = require("mercadopago");
 
 module.exports = function (Mercadopago) {
 
+    var mp = new MP("");
+
+    /**
+     * 
+     * @param {string} idPagamento 
+     * @param {Function(Error, object)} callback
+     */
+
+    Mercadopago.ConsultaCompra = function (idPagamento, callback) {
+        
+
+        var doPayment = mp.get("/v1/payments/" + idPagamento);
+
+        doPayment.then(
+            function (payment) {
+                console.log('Pgto:', payment);
+                callback(null, payment.response);
+            },
+            function (error) {
+                console.log('Erro:', error);
+                callback(error, null);
+            });
+    };
+
 
 
     /**
@@ -15,28 +39,24 @@ module.exports = function (Mercadopago) {
     Mercadopago.EfetuaCompra = function (token, callback) {
 
 
-
-
-        var mp = new MP("APP_USR-6371948622467215-020511-5317ef62bbd997d52c2979a29f2c8419-133771061");
-
         var doPayment = mp.post("/v1/payments",
             {
-                "transaction_amount": 3.50,
+                "transaction_amount": 2.50,
                 "token": token,
-                "description": "Teste do Paulo",
+                "description": "SERVICO WEB",
                 "installments": 1,
                 "payment_method_id": "visa",
                 "payer": {
-                    "email": "paforestieri@stefanini.com"
+                    "email": "paforest1970@gmail.com"
                 }
             });
 
         doPayment.then(
             function (payment) {
-                console.log('Pgto:' , payment);
+                console.log('Pgto:', payment);
             },
             function (error) {
-                console.log('Erro:' , error);
+                console.log('Erro:', error);
             });
 
 
