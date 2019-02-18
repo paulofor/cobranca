@@ -13,13 +13,15 @@ import { MercadoPagoApi, SDKModels, LoopBackAuth, InternalStorage } from './shar
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { SocketConnection } from './shared/sdk/sockets/socket.connections';
 import { SocketDriver } from './shared/sdk/sockets/socket.driver';
+import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    TestePage
+    TestePage,
+    TestePagSeguroPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { SocketDriver } from './shared/sdk/sockets/socket.driver';
     MyApp,
     HomePage,
     ListPage,
-    TestePage
+    TestePage,
+    TestePagSeguroPage
   ],
   providers: [
 
