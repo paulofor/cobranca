@@ -38,5 +38,9 @@
   "MercadoPago": {
     "dataSource": "db",
     "public": true
+  },
+  "PagSeguro": {
+    "dataSource": "db",
+    "public": true
   }
 }

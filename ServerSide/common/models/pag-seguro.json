@@ -1,0 +1,32 @@
+{
+  "name": "PagSeguro",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "IniciaSessao": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "resposta",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/iniciaSessao",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}

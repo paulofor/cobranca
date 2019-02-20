@@ -15,9 +15,11 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'teste-pag-seguro.html',
 })
 export class TestePagSeguroPage {
-  POST https://ws.pagseguro.uol.com.br/v2/sessions?{{credenciais}}
+ 
 
-  urlSession = "https://pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=";
+  urlSession = "https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=5A0836AD2E5B41B4AD993D27B4A4ED3D";
+
+  idSession = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient) {
   }
@@ -28,24 +30,13 @@ export class TestePagSeguroPage {
   }
 
   obtemSessao() {
-
-  }
-
-  private getSession(email, token) {
-    return new Promise((resolve) => {
-      resolve();
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-      let idSession = "";
-      this.http.post(this.credencial.urlSession, {}, options).subscribe(data => {
-        xml2js.parseString(data["_body"], function (err, result) {
-          idSession = JSON.stringify(result.session.id).replace(/[^a-zA-Z0-9_-]/g, '');
-        });
-        this.credencial.idSession = idSession;
-      });
-    }).then(() => {
-      return Promise.resolve(this.credencial);
+    this.http.post(this.urlSession, {}, {}).subscribe(data => {
+      console.log('Data:' , data);
+      //xml2js.parseString(data["_body"], function (err, result) {
+      //  this.idSession = JSON.stringify(result.session.id).replace(/[^a-zA-Z0-9_-]/g, '');
+      //});
     });
   }
+
 
 }

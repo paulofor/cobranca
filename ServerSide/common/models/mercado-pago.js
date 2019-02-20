@@ -4,7 +4,7 @@ var MP = require("mercadopago");
 
 module.exports = function (Mercadopago) {
 
-    var mp = new MP("");
+    var mp = new MP("APP_USR-6371948622467215-020511-5317ef62bbd997d52c2979a29f2c8419-133771061");
 
     /**
      * 
