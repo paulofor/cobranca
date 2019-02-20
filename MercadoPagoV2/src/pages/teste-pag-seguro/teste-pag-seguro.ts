@@ -17,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
 export class TestePagSeguroPage {
  
 
-  urlSession = "https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=5A0836AD2E5B41B4AD993D27B4A4ED3D";
+  urlSession = "https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=5A0836AD2E5B41B4AD997B4A4ED3D";
 
   idSession = '';
 
