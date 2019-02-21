@@ -50,6 +50,7 @@ import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { MercadoPagoApi } from './services/custom/MercadoPago';
+import { PagSeguroApi } from './services/custom/PagSeguro';
 /**
 * @module SDKBrowserModule
 * @description
@@ -82,9 +83,10 @@ export class SDKBrowserModule {
         RealTime,
         UserApi,
         MercadoPagoApi,
+        PagSeguroApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
-
+   
       ]
     };
   }

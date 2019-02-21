@@ -9,15 +9,15 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MercadoPago } from '../../models/MercadoPago';
+import { PagSeguro } from '../../models/PagSeguro';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `MercadoPago` model.
+ * Api services for the `PagSeguro` model.
  */
 @Injectable()
-export class MercadoPagoApi extends BaseLoopBackApi {
+export class PagSeguroApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -42,13 +42,13 @@ export class MercadoPagoApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `MercadoPago` object.)
+   * This usually means the response is a `PagSeguro` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/MercadoPagos";
+    "/PagSeguros";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -61,7 +61,7 @@ export class MercadoPagoApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id MercadoPago id
+   * @param {any} id PagSeguro id
    *
    * @param {object} data Request data.
    *
@@ -73,13 +73,13 @@ export class MercadoPagoApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `MercadoPago` object.)
+   * This usually means the response is a `PagSeguro` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/MercadoPagos/:id";
+    "/PagSeguros/:id";
     let _routeParams: any = {
       id: id
     };
@@ -98,7 +98,7 @@ export class MercadoPagoApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `token` – `{string}` - 
+   * This method does not accept any data. Supply an empty object.
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -106,54 +106,25 @@ export class MercadoPagoApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `MercadoPago` object.)
+   * This usually means the response is a `PagSeguro` object.)
    * </em>
    */
-  public EfetuaCompra(token: any, customHeaders?: Function): Observable<any> {
+  public IniciaSessao(customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/MercadoPagos/efetuaCompra";
+    "/PagSeguros/iniciaSessao";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
-    if (typeof token !== 'undefined' && token !== null) _urlParams.token = token;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {string} idPagamento 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `MercadoPago` object.)
-   * </em>
-   */
-  public ConsultaCompra(idPagamento: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/MercadoPagos/consultaCompra";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof idPagamento !== 'undefined' && idPagamento !== null) _urlParams.idPagamento = idPagamento;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `MercadoPago`.
+   * i.e. `PagSeguro`.
    */
   public getModelName() {
-    return "MercadoPago";
+    return "PagSeguro";
   }
 }
