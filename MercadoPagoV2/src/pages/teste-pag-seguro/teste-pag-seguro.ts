@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { PagSeguroApi } from '../../app/shared/sdk/index';
+
+declare var PagSeguroDirectPayment: any;
 
 /**
  * Generated class for the TestePagSeguroPage page.
@@ -15,24 +18,112 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'teste-pag-seguro.html',
 })
 export class TestePagSeguroPage {
- 
+
 
   idSession = '';
+  hash = '';
+  tokenCartao = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private pagSrv: PagSeguroApi) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestePagSeguroPage');
-    this.obtemSessao();
+    this.pagSrv.IniciaSessao((resp) => {
+      this.idSession = resp;
+      console.log('Resp:' + resp);
+      this.setSessao();
+    })
   }
 
-  obtemSessao() {
-    this.http.post(this.urlSession, {}, {}).subscribe(data => {
-      console.log('Data:' , data);
-      //xml2js.parseString(data["_body"], function (err, result) {
-      //  this.idSession = JSON.stringify(result.session.id).replace(/[^a-zA-Z0-9_-]/g, '');
-      //});
+  setSessao() {
+    PagSeguroDirectPayment.setSessionId(this.idSession);
+    PagSeguroDirectPayment.getPaymentMethods({
+      amount: 5.00,
+      success: function (response) {
+        console.log('MeioPagto Sucesso:' + response);
+      },
+      error: function (response) {
+        console.log('MeioPgto Falha:' + response);
+        // Callback para chamadas que falharam.
+      },
+      complete: function (response) {
+        // Callback para todas chamadas.
+        console.log('MeioPgto Total:' + response);
+      }
+    });
+  }
+
+  obtemHashCliente() {
+    PagSeguroDirectPayment.onSenderHashReady(function (response) {
+      if (response.status == 'error') {
+        console.log(response.message);
+        return false;
+      }
+      this.hash = response.senderHash; //Hash estará disponível nesta variável.
+    });
+  }
+
+  obtemParcelamento() {
+    PagSeguroDirectPayment.getInstallments({
+      amount: 118.80,
+      maxInstallmentNoInterest: 2,
+      brand: 'visa',
+      success: function (response) {
+        // Retorna as opções de parcelamento disponíveis
+        console.log('Parcelamento Sucesso:' + response);
+      },
+      error: function (response) {
+        // callback para chamadas que falharam.
+        console.log('Parcelamento Erro:' + response);
+      },
+      complete: function (response) {
+        // Callback para todas chamadas.
+        console.log('Parcelamento Completo:' + response);
+      }
+    });
+  }
+
+
+  // seis primeiros digitos do cartao
+  obtemBandeira() {
+    PagSeguroDirectPayment.getBrand({
+      cardBin: 411111,
+      success: function (response) {
+        //bandeira encontrada
+        console.log('Bandeira Sucesso:' + response);
+      },
+      error: function (response) {
+        //tratamento do erro
+        console.log('Bandeira Erro:' + response);
+      },
+      complete: function (response) {
+        //tratamento comum para todas chamadas
+        console.log('Bandeira Completo:' + response);
+      }
+    });
+  }
+
+
+  obtemTokenCartao() {
+    PagSeguroDirectPayment.createCardToken({
+      cardNumber: '4111111111111111', // Número do cartão de crédito
+      brand: 'visa', // Bandeira do cartão
+      cvv: '013', // CVV do cartão
+      expirationMonth: '12', // Mês da expiração do cartão
+      expirationYear: '2026', // Ano da expiração do cartão, é necessário os 4 dígitos.
+      success: function (response) {
+        // Retorna o cartão tokenizado.
+        console.log('TokenCard Sucesso:' + response);
+      },
+      error: function (response) {
+        // Callback para chamadas que falharam.
+        console.log('TokenCard Erro:' + response);
+      },
+      complete: function (response) {
+        // Callback para todas chamadas.
+        console.log('TokenCard Completo:' + response);
+      }
     });
   }
 
