@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = '5A0836A4ED3D';
+    var token = '';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
@@ -86,11 +86,16 @@ module.exports = function (Pagseguro) {
      */
 
     Pagseguro.IniciaSessao = function (callback) {
-        request.post(urlSession, {}, (err, response, body) => {
-            //console.log('Body:' + body);
-            //console.log('Erro:' + err);
-            //console.log('Response: ' + JSON.stringify(response));
-            //console.log('Status: ' + response.statusCode);
+
+        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxiedRequest = request.defaults({'proxy': proxyUrl});
+
+        console.log('Proxy' ,JSON.stringify(proxiedRequest) );
+        proxiedRequest.post(urlSession, {}, (err, response, body) => {
+            console.log('Body:' + body);
+            console.log('Erro:' + err);
+            console.log('Response: ' + JSON.stringify(response));
+            console.log('Status: ' + response.statusCode);
             xml2js.parseString(body, (err, result) => {
                 this.idSessao = JSON.stringify(result.session.id).replace(/[^a-zA-Z0-9_-]/g, '');
                 //console.log('id=' + this.idSessao);
