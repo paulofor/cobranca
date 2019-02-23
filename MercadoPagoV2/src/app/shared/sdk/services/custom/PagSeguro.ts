@@ -121,6 +121,72 @@ export class PagSeguroApi extends BaseLoopBackApi {
   }
 
   /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   *  - `senderHash` – `{string}` - 
+   *
+   *  - `creditCardToken` – `{string}` - 
+   *
+   *  - `installmentQuantity` – `{string}` - 
+   *
+   *  - `installmentValue` – `{string}` - 
+   *
+   *  - `noInterestInstallmentQuantity` – `{string}` - 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `PagSeguro` object.)
+   * </em>
+   */
+  public CheckoutCartao(senderHash: any = {}, creditCardToken: any = {}, installmentQuantity: any = {}, installmentValue: any = {}, noInterestInstallmentQuantity: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/PagSeguros/checkoutCartao";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof senderHash !== 'undefined' && senderHash !== null) _urlParams.senderHash = senderHash;
+    if (typeof creditCardToken !== 'undefined' && creditCardToken !== null) _urlParams.creditCardToken = creditCardToken;
+    if (typeof installmentQuantity !== 'undefined' && installmentQuantity !== null) _urlParams.installmentQuantity = installmentQuantity;
+    if (typeof installmentValue !== 'undefined' && installmentValue !== null) _urlParams.installmentValue = installmentValue;
+    if (typeof noInterestInstallmentQuantity !== 'undefined' && noInterestInstallmentQuantity !== null) _urlParams.noInterestInstallmentQuantity = noInterestInstallmentQuantity;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `idSessao` – `{string}` - 
+   */
+  public ObtemSessao(customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/PagSeguros/obtemSessao";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * The name of the model represented by this $resource,
    * i.e. `PagSeguro`.
    */

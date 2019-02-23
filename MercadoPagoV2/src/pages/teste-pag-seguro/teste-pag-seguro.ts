@@ -29,9 +29,11 @@ export class TestePagSeguroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestePagSeguroPage');
-    this.pagSrv.IniciaSessao((resp) => {
+    this.pagSrv.ObtemSessao((err,resp) => {
+      console.log('Err:' + JSON.stringify(err));
+      console.log('Resp:' + JSON.stringify(resp));
       this.idSession = resp;
-      console.log('Resp:' + resp);
+      
       this.setSessao();
     })
   }
@@ -41,15 +43,15 @@ export class TestePagSeguroPage {
     PagSeguroDirectPayment.getPaymentMethods({
       amount: 5.00,
       success: function (response) {
-        console.log('MeioPagto Sucesso:' + response);
+        console.log('MeioPagto Sucesso:' + JSON.stringify(response));
       },
       error: function (response) {
-        console.log('MeioPgto Falha:' + response);
+        console.log('MeioPgto Falha:' + JSON.stringify(response));
         // Callback para chamadas que falharam.
       },
       complete: function (response) {
         // Callback para todas chamadas.
-        console.log('MeioPgto Total:' + response);
+        console.log('MeioPgto Total:' + JSON.stringify(response));
       }
     });
   }

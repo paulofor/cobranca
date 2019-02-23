@@ -86,7 +86,7 @@ export class SDKBrowserModule {
         PagSeguroApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
-   
+
       ]
     };
   }

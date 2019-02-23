@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = '';
+    var token = '5A0836AD2E5B41B4AD993D27B4A4ED3D';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
@@ -80,6 +80,34 @@ module.exports = function (Pagseguro) {
     };
 
 
+
+    /**
+     * 
+     * @param {Function(Error, string)} callback
+     */
+
+    Pagseguro.ObtemSessao = function (callback) {
+
+        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
+
+        console.log('Proxy', JSON.stringify(proxiedRequest));
+        request.post(urlSession, {}, (err, response, body) => {
+            console.log('Body:' + body);
+            console.log('Erro:' + err);
+            console.log('Response: ' + JSON.stringify(response));
+            console.log('Status: ' + response.statusCode);
+            xml2js.parseString(body, (err, result) => {
+                this.idSessao = JSON.stringify(result.session.id).replace(/[^a-zA-Z0-9_-]/g, '');
+                //console.log('id=' + this.idSessao);
+                callback(err, this.idSessao);
+            });
+        })
+
+    };
+
+
+
     /**
      * 
      * @param {Function(Error, object)} callback
@@ -88,10 +116,10 @@ module.exports = function (Pagseguro) {
     Pagseguro.IniciaSessao = function (callback) {
 
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
-        var proxiedRequest = request.defaults({'proxy': proxyUrl});
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
-        console.log('Proxy' ,JSON.stringify(proxiedRequest) );
-        proxiedRequest.post(urlSession, {}, (err, response, body) => {
+        console.log('Proxy', JSON.stringify(proxiedRequest));
+        request.post(urlSession, {}, (err, response, body) => {
             console.log('Body:' + body);
             console.log('Erro:' + err);
             console.log('Response: ' + JSON.stringify(response));

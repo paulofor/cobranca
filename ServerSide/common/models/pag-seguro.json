@@ -76,6 +76,24 @@
           "verb": "post"
         }
       ]
+    },
+    "ObtemSessao": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "idSessao",
+          "type": "string",
+          "root": false,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/obtemSessao",
+          "verb": "get"
+        }
+      ]
     }
   }
 }
