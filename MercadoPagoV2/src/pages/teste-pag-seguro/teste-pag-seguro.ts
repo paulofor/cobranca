@@ -29,21 +29,23 @@ export class TestePagSeguroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestePagSeguroPage');
-    this.pagSrv.ObtemSessao((err,resp) => {
-      console.log('Err:' + JSON.stringify(err));
-      console.log('Resp:' + JSON.stringify(resp));
-      this.idSession = resp;
-      
-      this.setSessao();
-    })
+    this.pagSrv.ObtemSessao()
+      .subscribe((resp) => {
+        //console.log('Err:' + JSON.stringify(err));
+        console.log('Resp:' + JSON.stringify(resp));
+        this.idSession = resp.idSessao;
+        this.setSessao();
+      })
   }
 
   setSessao() {
     PagSeguroDirectPayment.setSessionId(this.idSession);
     PagSeguroDirectPayment.getPaymentMethods({
-      amount: 5.00,
+      amount: 1.15,
       success: function (response) {
-        console.log('MeioPagto Sucesso:' + JSON.stringify(response));
+        //console.log('MeioPagto Sucesso:' + JSON.stringify(response));
+        console.log('Vai chamar on sender');
+        this.obtemHashCliente();
       },
       error: function (response) {
         console.log('MeioPgto Falha:' + JSON.stringify(response));
@@ -51,15 +53,20 @@ export class TestePagSeguroPage {
       },
       complete: function (response) {
         // Callback para todas chamadas.
-        console.log('MeioPgto Total:' + JSON.stringify(response));
+        //console.log('MeioPgto Total:' + JSON.stringify(response));
       }
     });
   }
 
+  comprar() {
+    console.log('Chamou comprar');
+  }
+
   obtemHashCliente() {
     PagSeguroDirectPayment.onSenderHashReady(function (response) {
+      console.log('onSender-response:' + response);
       if (response.status == 'error') {
-        console.log(response.message);
+        console.log('onSender:' + response.message);
         return false;
       }
       this.hash = response.senderHash; //Hash estará disponível nesta variável.

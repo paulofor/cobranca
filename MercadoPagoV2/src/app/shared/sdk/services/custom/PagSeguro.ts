@@ -182,7 +182,10 @@ export class PagSeguroApi extends BaseLoopBackApi {
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
+    //console.log('_url:' + _url);
+    //console.log('_customHeaders:' + customHeaders);
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    //console.log('result:' + result);
     return result;
   }
 
