@@ -21,7 +21,7 @@ export class TestePagSeguroPage {
 
 
   idSession = '';
-  hash = '';
+  codigoHash = '';
   tokenCartao = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private pagSrv: PagSeguroApi) {
@@ -72,8 +72,11 @@ export class TestePagSeguroPage {
         console.log('onSender:' + response.message);
         return false;
       }
-      this.hash = response.senderHash; //Hash estará disponível nesta variável.
-      console.log('Hash: ' , this.hash);
+      console.log('IdSessao: ' + idSession);
+      console.log('HashAtual:' + this.codigoHash);
+      console.log('response.senderHash:' , response.senderHash);
+      this.codigoHash = response.senderHash; //Hash estará disponível nesta variável.
+      //console.log('Hash: ' , this.codigoHash);
     });
   }
 
