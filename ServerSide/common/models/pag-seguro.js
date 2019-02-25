@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = '';
+    var token = '5A0836AD2E5B41B4AD993D27B4A4ED3D';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
@@ -92,7 +92,7 @@ module.exports = function (Pagseguro) {
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
         console.log('Proxy', JSON.stringify(proxiedRequest));
-        request.post(urlSession, {}, (err, response, body) => {
+        proxiedRequest.post(urlSession, {}, (err, response, body) => {
             console.log('Body:' + body);
             console.log('Erro:' + err);
             console.log('Response: ' + JSON.stringify(response));

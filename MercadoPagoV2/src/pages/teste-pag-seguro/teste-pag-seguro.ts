@@ -43,9 +43,10 @@ export class TestePagSeguroPage {
     PagSeguroDirectPayment.getPaymentMethods({
       amount: 1.15,
       success: function (response) {
+        console.log('Resultado setSessao() ok' + new Date());
         //console.log('MeioPagto Sucesso:' + JSON.stringify(response));
-        console.log('Vai chamar on sender');
-        this.obtemHashCliente();
+        //console.log('Vai chamar on sender');
+        //this.obtemHashCliente();
       },
       error: function (response) {
         console.log('MeioPgto Falha:' + JSON.stringify(response));
@@ -60,16 +61,19 @@ export class TestePagSeguroPage {
 
   comprar() {
     console.log('Chamou comprar');
+    this.obtemHashCliente();
   }
 
   obtemHashCliente() {
+    console.log('Vai buscar o hash');
     PagSeguroDirectPayment.onSenderHashReady(function (response) {
-      console.log('onSender-response:' + response);
+      console.log('onSender-response:' + JSON.stringify(response));
       if (response.status == 'error') {
         console.log('onSender:' + response.message);
         return false;
       }
       this.hash = response.senderHash; //Hash estará disponível nesta variável.
+      console.log('Hash: ' , this.hash);
     });
   }
 
