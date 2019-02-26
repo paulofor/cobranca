@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PagSeguroApi } from '../../app/shared/sdk/index';
 
 declare var PagSeguroDirectPayment: any;
+declare var hashGlobal : string;
 
 /**
  * Generated class for the TestePagSeguroPage page.
@@ -72,11 +73,12 @@ export class TestePagSeguroPage {
         console.log('onSender:' + response.message);
         return false;
       }
-      console.log('IdSessao: ' + idSession);
-      console.log('HashAtual:' + this.codigoHash);
-      console.log('response.senderHash:' , response.senderHash);
-      this.codigoHash = response.senderHash; //Hash estará disponível nesta variável.
-      //console.log('Hash: ' , this.codigoHash);
+      console.log('This:' + this);
+      //console.log('IdSessao: ' + this.idSession);
+      //console.log('HashAtual:' + this.codigoHash);
+      //console.log('response.senderHash:' , response.senderHash);
+      //hashGlobal = response.senderHash; //Hash estará disponível nesta variável.
+      console.log('Hash: ' ,  response.senderHash);
     });
   }
 
