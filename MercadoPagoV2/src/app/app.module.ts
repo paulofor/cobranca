@@ -14,6 +14,7 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
 import { SocketConnection } from './shared/sdk/sockets/socket.connections';
 import { SocketDriver } from './shared/sdk/sockets/socket.driver';
 import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
+import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
     HomePage,
     ListPage,
     TestePage,
-    TestePagSeguroPage
+    TestePagSeguroPage,
+    PagSeguroLightPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
     HomePage,
     ListPage,
     TestePage,
-    TestePagSeguroPage
+    TestePagSeguroPage,
+    PagSeguroLightPage
   ],
   providers: [
 

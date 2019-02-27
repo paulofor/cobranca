@@ -63,6 +63,19 @@ module.exports = function (Pagseguro) {
 
 
 
+
+    /**
+    *
+    * @param {object} xml
+    * @param {Function(Error, string)} callback
+    */
+
+    Pagseguro.PagamentoCaixaBranca = function (xml, callback) {
+        var codigo;
+        // TODO
+        callback(null, codigo);
+    };
+
     /**
      *
      * @param {string} senderHash

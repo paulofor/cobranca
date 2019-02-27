@@ -94,6 +94,31 @@
           "verb": "get"
         }
       ]
+    },
+    "PagamentoCaixaBranca": {
+      "accepts": [
+        {
+          "arg": "xml",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "codigo",
+          "type": "string",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/pagamentoCaixaBranca",
+          "verb": "post"
+        }
+      ]
     }
   }
 }
