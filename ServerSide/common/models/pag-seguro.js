@@ -6,11 +6,13 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = '5A0836AD2E5B41B4AD993D27B4A4ED3D';
+    var token = '';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
     var urlTransacao = 'https://ws.pagseguro.uol.com.br/v2/transactions?email=paulofore@gmail.com&token=' + token;
+
+    var urlCaixaBranca = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=paulofore@gmail.com&token=' + token;
 
     var idSessao;
 
@@ -61,7 +63,34 @@ module.exports = function (Pagseguro) {
         '&billingAddressState=SP' +
         '&billingAddressCountry=BRA';
 
-
+    var caixaBranca = "currency=BRL" +
+        "&itemId1=0001" +
+        "&itemDescription1=Produto PagSeguroI" +
+        "&itemAmount1=99999.99" +
+        "&itemQuantity1=1" +
+        "&itemWeight1=1000" +
+        "&itemId2=0002" +
+        "&itemDescription2=Produto PagSeguroII" +
+        "&itemAmount2=99999.98" +
+        "&itemQuantity2=2" +
+        "&itemWeight2=750" +
+        "&reference=REF1234" +
+        "&senderName=Jose Comprador" +
+        "&senderAreaCode=99" +
+        "&senderPhone=999999999" +
+        "&senderEmail=comprador@uol.com.br" +
+        "&shippingType=1" +
+        "&shippingAddressRequired=true" +
+        "&shippingAddressStreet=Av. PagSeguro" +
+        "&shippingAddressNumber=9999" +
+        "&shippingAddressComplement=99o andar" +
+        "&shippingAddressDistrict=Jardim Internet" +
+        "&shippingAddressPostalCode=99999999" +
+        "&shippingAddressCity=Cidade Exemplo" +
+        "&shippingAddressState=SP" +
+        "&shippingAddressCountry=BRA" +
+        "&timeout=25" +
+        "&enableRecover=false";
 
 
     /**
@@ -71,9 +100,32 @@ module.exports = function (Pagseguro) {
     */
 
     Pagseguro.PagamentoCaixaBranca = function (xml, callback) {
-        var codigo;
-        // TODO
-        callback(null, codigo);
+
+        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
+
+        var mensagem = {
+            url: urlCaixaBranca,
+            headers: {
+                "content-type": "application/x-www-form-urlencoded; charset=ISO-8859-1",
+            },
+            body: caixaBranca
+        }
+
+
+        proxiedRequest.post(urlCaixaBranca, mensagem, (err, response, body) => {
+            xml2js.parseString(body, (err, result) => {
+                //console.log('Body:' + JSON.stringify(result));
+                if (result.errors) {
+                    result.errors.error.forEach(erro => {
+                        console.log('Erro: ' , erro.message);
+                    })
+                    callback(result.errors,null);
+                } else {
+                    callback(null,result);
+                }
+            });
+        })
     };
 
     /**

@@ -12,3 +12,4 @@ export class ErrorHandler {
     return Observable.throw(errorResponse.error.error || 'Server error');
   }
 }
+

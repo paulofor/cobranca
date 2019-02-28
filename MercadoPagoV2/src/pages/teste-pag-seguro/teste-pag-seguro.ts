@@ -79,6 +79,7 @@ export class TestePagSeguroPage {
       //console.log('response.senderHash:' , response.senderHash);
       //hashGlobal = response.senderHash; //Hash estará disponível nesta variável.
       console.log('Hash: ' ,  response.senderHash);
+      var hash = response.senderHash;
     });
   }
 

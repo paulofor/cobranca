@@ -26,7 +26,7 @@ export class PagSeguroLightPage {
 
   iniciaBox() {
     console.log('iniciaBox');
-    PagSeguroLightbox("1F69A3CF7878ED9994B3DF9DDC706796");
+    PagSeguroLightbox("304B911D767609ABB48C8F9930FC92EE");
     
   }
 
