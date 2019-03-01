@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PagSeguroApi } from '../../app/shared/sdk/index';
 
 declare var PagSeguroDirectPayment: any;
-declare var hashGlobal : string;
+
 
 /**
  * Generated class for the TestePagSeguroPage page.
@@ -65,15 +65,12 @@ export class TestePagSeguroPage {
     this.obtemHashCliente();
   }
 
-  setHash(valor) {
-    this.codigoHash = valor;
-  }
 
   meusDados() {
     console.log('********************************');
     console.log(this);
-    console.log('Hash' + this.codigoHash);
-    console.log('Cartao' + PagSeguroDirectPayment.tokenCartao);
+    console.log('Hash: ' + hashGlobal);
+    console.log('Cartao: ' + tokenGlobal);
   }
 
   obtemHashCliente() {
@@ -90,7 +87,7 @@ export class TestePagSeguroPage {
       //console.log('response.senderHash:' , response.senderHash);
       //hashGlobal = response.senderHash; //Hash estará disponível nesta variável.
       console.log('Hash: ' ,  response.senderHash);
-      var hash = response.senderHash;
+      hashGlobal = response.senderHash;
       //this.setHash(hash);
     });
   }
@@ -111,7 +108,7 @@ export class TestePagSeguroPage {
       },
       complete: function (response) {
         // Callback para todas chamadas.
-        console.log('Parcelamento Completo:' + JSON.stringify(response));
+        //console.log('Parcelamento Completo:' + JSON.stringify(response));
       }
     });
   }
@@ -132,7 +129,7 @@ export class TestePagSeguroPage {
       },
       complete: function (response) {
         //tratamento comum para todas chamadas
-        console.log('Bandeira Completo:' + JSON.stringify(response));
+        //console.log('Bandeira Completo:' + JSON.stringify(response));
       }
     });
   }
@@ -149,9 +146,7 @@ export class TestePagSeguroPage {
       success: function (response) {
         // Retorna o cartão tokenizado.
         console.log('TokenCard Sucesso:' + JSON.stringify(response.card.token));
-        this.tokenCartao = response.card.token;
-        console.log('Resultado-Token:' , this.tokenCartao);
-        console.log(this);
+        tokenGlobal = response.card.token;
       },
       error: function (response) {
         // Callback para chamadas que falharam.
@@ -159,10 +154,13 @@ export class TestePagSeguroPage {
       },
       complete: function (response) {
         // Callback para todas chamadas.
-        console.log('TokenCard Completo:' + JSON.stringify(response));
+        //console.log('TokenCard Completo:' + JSON.stringify(response));
       }
     });
   }
 
 
 }
+
+export var tokenGlobal : string;
+export var hashGlobal : string;

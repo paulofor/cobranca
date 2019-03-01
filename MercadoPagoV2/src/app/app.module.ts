@@ -15,6 +15,7 @@ import { SocketConnection } from './shared/sdk/sockets/socket.connections';
 import { SocketDriver } from './shared/sdk/sockets/socket.driver';
 import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
 import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
+import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
     ListPage,
     TestePage,
     TestePagSeguroPage,
-    PagSeguroLightPage
+    PagSeguroLightPage,
+    PagSeguroPlanoPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
     ListPage,
     TestePage,
     TestePagSeguroPage,
-    PagSeguroLightPage
+    PagSeguroLightPage,
+    PagSeguroPlanoPage
   ],
   providers: [
 

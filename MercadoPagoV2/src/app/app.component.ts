@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { TestePage } from '../pages/teste/teste';
 import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
 import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
+import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,6 +25,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'PagSeguroPlano' , component: PagSeguroPlanoPage },
       { title: 'PagSeguro' , component: TestePagSeguroPage },
       { title: 'PagSeguroLight' , component: PagSeguroLightPage },
       { title: 'Home', component: HomePage },
