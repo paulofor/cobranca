@@ -30,4 +30,8 @@ export class PagSeguroLightPage {
     
   }
 
+  paginaExterna() {
+    location.href="https://pagseguro.uol.com.br/v2/checkout/payment.html?code=304B911D767609ABB48C8F9930FC92EE";
+  }
+
 }
