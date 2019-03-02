@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = 'AF09405EC416451D994ED29DD17F692B';
+    var token = '';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
