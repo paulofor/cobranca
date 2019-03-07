@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = '';
+    var token = 'CB4CBC8D23374F219598172EF26BEC37';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
@@ -92,6 +92,62 @@ module.exports = function (Pagseguro) {
         "&timeout=25" +
         "&enableRecover=false";
 
+    var planoAdesao = "preApproval.name=Teste 01" +
+        "&preApproval.charge=AUTO" +
+        "&preApproval.period=MONTH" +
+        "&preApproval.expiration.value=10" +
+        "&preApproval.expiration.unit=1 MONTH";
+
+
+    var planoJson = {
+        "preApproval": {
+            "name": "Plano 01",
+            "charge": "AUTO",
+            "period": "MONTHLY",
+            "amountPerPayment": 2,
+            "expiration": {
+                "value": 24,
+                "unit": "MONTHS"
+            },
+            "details": "string",
+            "maxAmountPerPeriod": 1,
+            "maxAmountPerPayment": 1,
+            "maxTotalAmount": 360,
+            "maxPaymentsPerPeriod": 1,
+            "cancelURL": "https://dev.domain.com/settings/premium"
+        }
+    }
+    /**
+     *
+     * @param {Function(Error, object)} callback
+     */
+
+    Pagseguro.AderePlano = function (callback) {
+
+        var urlAderePlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request?email=paulofore@gmail.com&token=' + token;
+
+        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
+
+        var mensagem = {
+            url: urlAderePlano,
+            headers: {
+                "content-type": "application/json;charset=ISO-8859-1",
+                "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
+            },
+            body: planoJson
+        }
+
+
+        proxiedRequest.post(urlAderePlano, mensagem, (err, response, body) => {
+            //xml2js.parseString(body,callback);
+            console.log('Erro: ', err);
+            console.log('Body: ', body);
+        })
+
+        callback(null, null);
+    };
+
 
     /**
     *
@@ -118,11 +174,11 @@ module.exports = function (Pagseguro) {
                 //console.log('Body:' + JSON.stringify(result));
                 if (result.errors) {
                     result.errors.error.forEach(erro => {
-                        console.log('Erro: ' , erro.message);
+                        console.log('Erro: ', erro.message);
                     })
-                    callback(result.errors,null);
+                    callback(result.errors, null);
                 } else {
-                    callback(null,result);
+                    callback(null, result);
                 }
             });
         })

@@ -119,6 +119,24 @@
           "verb": "post"
         }
       ]
+    },
+    "AderePlano": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "saida",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/aderePlano",
+          "verb": "get"
+        }
+      ]
     }
   }
 }
