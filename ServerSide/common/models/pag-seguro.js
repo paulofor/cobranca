@@ -129,23 +129,24 @@ module.exports = function (Pagseguro) {
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
+        console.log('body: ', planoJson);
+
         var mensagem = {
             url: urlAderePlano,
             headers: {
-                "content-type": "application/json;charset=ISO-8859-1",
+                "Content-Type": "application/json;charset=ISO-8859-1",
                 "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
             },
-            body: planoJson
+            body: JSON.stringify(planoJson)
         }
 
 
-        proxiedRequest.post(urlAderePlano, mensagem, (err, response, body) => {
+        request.post(urlAderePlano, mensagem, (err, response, body) => {
             //xml2js.parseString(body,callback);
             console.log('Erro: ', err);
             console.log('Body: ', body);
+            callback(err,JSON.parse(body));
         })
-
-        callback(null, null);
     };
 
 
