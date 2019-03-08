@@ -26,6 +26,9 @@ export class PagSeguroPlanoPage {
   criaPlano() {
     var url = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request';
     this.http.post(url,{},{})
+      .subscribe((result) => {
+        console.log('Result: ' , result);
+      })
   }
 
 }

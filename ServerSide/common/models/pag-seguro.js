@@ -117,6 +117,47 @@ module.exports = function (Pagseguro) {
             "cancelURL": "https://dev.domain.com/settings/premium"
         }
     }
+
+
+    var criaPlano = {
+        "reference" :  "plano01",
+        "preApproval" : {
+            "name" : "Nome Plano",
+            "charge" : "AUTO",
+            "period" : "MONTHLY",
+            "expiration" : {
+                "value" : 12,
+                "unit" : "MONTHS"
+            },
+            "amountPerPayment" : 1.99,
+        }
+    }
+
+    var aderePlano = {
+        "plan" : "62525B7BC6C6BB51149B0F97784AF965",
+        "sender" : {
+            "name" : "Paulo Alexandre",
+            "email" : "palf@gmail.com" ,
+            "phone" : {
+                "areaCode" : "21",
+                "number" : "992902732"
+            } ,
+            "address" : {
+                "street" : "Rua Antonio Basilio",
+                "number" : "204",
+                "complement" : "apt. 805",
+                "district" : "Tijuca" ,
+                "city" : "Rio de Janeiro" ,
+                "state" : "RJ" ,
+                "country" : "Brasil",
+                "postalCode" : "20511190"
+            } ,
+            "documents" : {
+                "type" : "cpf",
+                "value" : "011114740780"
+            }
+        }
+    }
     /**
      *
      * @param {Function(Error, object)} callback
@@ -124,12 +165,14 @@ module.exports = function (Pagseguro) {
 
     Pagseguro.AderePlano = function (callback) {
 
-        var urlAderePlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request?email=paulofore@gmail.com&token=' + token;
+        var urlCriaPlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request?email=paulofore@gmail.com&token=' + token;
+        var urlAderePlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email=paulofore@gmail.com&token=' + token;
+
 
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
-        console.log('body: ', planoJson);
+        //console.log('body: ', criaPlano);
 
         var mensagem = {
             url: urlAderePlano,
@@ -137,7 +180,7 @@ module.exports = function (Pagseguro) {
                 "Content-Type": "application/json;charset=ISO-8859-1",
                 "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
             },
-            body: JSON.stringify(planoJson)
+            body: JSON.stringify(aderePlano)
         }
 
 
