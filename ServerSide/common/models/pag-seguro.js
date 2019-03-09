@@ -137,7 +137,8 @@ module.exports = function (Pagseguro) {
         "plan" : "62525B7BC6C6BB51149B0F97784AF965",
         "sender" : {
             "name" : "Paulo Alexandre",
-            "email" : "palf@gmail.com" ,
+            "email" : "paforest1970@gmail.com" ,
+            "ip": "179.210.247.211",
             "phone" : {
                 "areaCode" : "21",
                 "number" : "992902732"
@@ -145,17 +146,24 @@ module.exports = function (Pagseguro) {
             "address" : {
                 "street" : "Rua Antonio Basilio",
                 "number" : "204",
-                "complement" : "apt. 805",
+                "complement" : "apt 805",
                 "district" : "Tijuca" ,
                 "city" : "Rio de Janeiro" ,
                 "state" : "RJ" ,
-                "country" : "Brasil",
+                "country" : "BRA",
                 "postalCode" : "20511190"
             } ,
-            "documents" : {
-                "type" : "cpf",
-                "value" : "011114740780"
+            "documents" : [
+                {
+                   "type" : "CPF",
+                   "value" : "01114740780"
+                }
+                
+            ],
+            "paymentMethod" : {
+
             }
+            
         }
     }
     /**
@@ -172,7 +180,7 @@ module.exports = function (Pagseguro) {
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
-        //console.log('body: ', criaPlano);
+        console.log('body: ', JSON.stringify(aderePlano));
 
         var mensagem = {
             url: urlAderePlano,
@@ -189,7 +197,9 @@ module.exports = function (Pagseguro) {
             console.log('Erro: ', err);
             console.log('Body: ', body);
             callback(err,JSON.parse(body));
-        })
+            //callback(null,{});
+        });
+        
     };
 
 
