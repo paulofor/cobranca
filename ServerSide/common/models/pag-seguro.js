@@ -120,58 +120,127 @@ module.exports = function (Pagseguro) {
 
 
     var criaPlano = {
-        "reference" :  "plano01",
-        "preApproval" : {
-            "name" : "Nome Plano",
-            "charge" : "AUTO",
-            "period" : "MONTHLY",
-            "expiration" : {
-                "value" : 12,
-                "unit" : "MONTHS"
+        "reference": "plano01",
+        "preApproval": {
+            "name": "Nome Plano",
+            "charge": "AUTO",
+            "period": "MONTHLY",
+            "expiration": {
+                "value": 12,
+                "unit": "MONTHS"
             },
-            "amountPerPayment" : 1.99,
+            "amountPerPayment": 1.99,
         }
     }
 
-    var aderePlano = {
-        "plan" : "62525B7BC6C6BB51149B0F97784AF965",
-        "sender" : {
-            "name" : "Paulo Alexandre",
-            "email" : "paforest1970@gmail.com" ,
+     
+    var aderePlanoVar = {
+        "plan": "62525B7BC6C6BB51149B0F97784AF965",
+        "sender": {
+            "name": "Paulo Alexandre",
+            "email": "paforest1970@sandbox.pagseguro.com.br",
             "ip": "179.210.247.211",
-            "phone" : {
-                "areaCode" : "21",
-                "number" : "992902732"
-            } ,
-            "address" : {
-                "street" : "Rua Antonio Basilio",
-                "number" : "204",
-                "complement" : "apt 805",
-                "district" : "Tijuca" ,
-                "city" : "Rio de Janeiro" ,
-                "state" : "RJ" ,
-                "country" : "BRA",
-                "postalCode" : "20511190"
-            } ,
-            "documents" : [
+            "phone": {
+                "areaCode": "21",
+                "number": "992902732"
+            },
+            "address": {
+                "street": "Rua Antonio Basilio",
+                "number": "204",
+                "complement": "apt 805",
+                "district": "Tijuca",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "country": "BRA",
+                "postalCode": "20511190"
+            },
+            "documents": [
                 {
-                   "type" : "CPF",
-                   "value" : "01114740780"
+                    "type": "CPF",
+                    "value": "01114740780"
                 }
-                
-            ] ,
-            "paymentMethod" : {
-                "type" : "CREDITCARD",
-                "creditCard" : {
-                    "token" : "",
-                    "holder" : {
-                        "name" : "Paulo Alexandre",
-                        "birthDate" : "19/08/1070"
-                    }
+
+            ]
+        },
+        "paymentMethod": {
+            "type": "CREDITCARD",
+            "creditCard": {
+                "token": "",
+                "holder": {
+                    "name": "Paulo Alexandre",
+                    "birthDate": "19/08/1970",
+                    "phone": {
+                        "areaCode": "21",
+                        "number": "992902732"
+                    },
+                    "documents": [
+                        {
+                            "type": "CPF",
+                            "value": "01114740780"
+                        }
+                    ]
                 }
-            }
-            
+            },
+
         }
+    }
+
+
+
+
+    function getObjetoAderePlano(token) {
+
+        var aderePlano = {
+            "plan": "62525B7BC6C6BB51149B0F97784AF965",
+            "sender": {
+                "name": "Paulo Alexandre",
+                "email": "paforest1970@sandbox.pagseguro.com.br",
+                "ip": "179.210.247.211",
+                "phone": {
+                    "areaCode": "21",
+                    "number": "992902732"
+                },
+                "address": {
+                    "street": "Rua Antonio Basilio",
+                    "number": "204",
+                    "complement": "apt 805",
+                    "district": "Tijuca",
+                    "city": "Rio de Janeiro",
+                    "state": "RJ",
+                    "country": "BRA",
+                    "postalCode": "20511190"
+                },
+                "documents": [
+                    {
+                        "type": "CPF",
+                        "value": "01114740780"
+                    }
+
+                ]
+            },
+            "paymentMethod": {
+                "type": "CREDITCARD",
+                "creditCard": {
+                    "token": token,
+                    "holder": {
+                        "name": "Paulo Alexandre",
+                        "birthDate": "19/08/1970",
+                        "phone": {
+                            "areaCode": "21",
+                            "number": "992902732"
+                        },
+                        "documents": [
+                            {
+                                "type": "CPF",
+                                "value": "01114740780"
+                            }
+                        ]
+                    }
+                },
+
+            }
+        }
+        return aderePlano;
     }
     /**
      *
@@ -187,7 +256,7 @@ module.exports = function (Pagseguro) {
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
-        console.log('body: ', JSON.stringify(aderePlano));
+        //console.log('body: ', JSON.stringify(aderePlano));
 
         var mensagem = {
             url: urlAderePlano,
@@ -195,7 +264,7 @@ module.exports = function (Pagseguro) {
                 "Content-Type": "application/json;charset=ISO-8859-1",
                 "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
             },
-            body: JSON.stringify(aderePlano)
+            body: JSON.stringify(getObjetoAderePlano('xxxxx'))
         }
 
 
@@ -203,10 +272,10 @@ module.exports = function (Pagseguro) {
             //xml2js.parseString(body,callback);
             console.log('Erro: ', err);
             console.log('Body: ', body);
-            callback(err,JSON.parse(body));
+            callback(err, JSON.parse(body));
             //callback(null,{});
         });
-        
+
     };
 
 
