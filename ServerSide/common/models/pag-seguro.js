@@ -159,9 +159,16 @@ module.exports = function (Pagseguro) {
                    "value" : "01114740780"
                 }
                 
-            ],
+            ] ,
             "paymentMethod" : {
-
+                "type" : "CREDITCARD",
+                "creditCard" : {
+                    "token" : "",
+                    "holder" : {
+                        "name" : "Paulo Alexandre",
+                        "birthDate" : "19/08/1070"
+                    }
+                }
             }
             
         }
