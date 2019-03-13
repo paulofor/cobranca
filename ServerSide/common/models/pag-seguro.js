@@ -8,7 +8,8 @@ module.exports = function (Pagseguro) {
 
     var token = 'CB4CBC8D23374F219598172EF26BEC37';
 
-    var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
+    //var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
+    var urlSession = 'https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
     var urlTransacao = 'https://ws.pagseguro.uol.com.br/v2/transactions?email=paulofore@gmail.com&token=' + token;
 
@@ -165,7 +166,7 @@ module.exports = function (Pagseguro) {
         "paymentMethod": {
             "type": "CREDITCARD",
             "creditCard": {
-                "token": "",
+                "token": "xxx",
                 "holder": {
                     "name": "Paulo Alexandre",
                     "birthDate": "19/08/1970",
@@ -247,8 +248,9 @@ module.exports = function (Pagseguro) {
      * @param {Function(Error, object)} callback
      */
 
-    Pagseguro.AderePlano = function (callback) {
+    Pagseguro.AderePlano = function (creditCardToken, callback) {
 
+        console.log('  *****   Adere Plano ****** ' , creditCardToken);
         var urlCriaPlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request?email=paulofore@gmail.com&token=' + token;
         var urlAderePlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email=paulofore@gmail.com&token=' + token;
 
@@ -264,7 +266,7 @@ module.exports = function (Pagseguro) {
                 "Content-Type": "application/json;charset=ISO-8859-1",
                 "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
             },
-            body: JSON.stringify(getObjetoAderePlano('xxxxx'))
+            body: JSON.stringify(getObjetoAderePlano(creditCardToken))
         }
 
 
@@ -339,11 +341,11 @@ module.exports = function (Pagseguro) {
 
     Pagseguro.ObtemSessao = function (callback) {
 
-        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxyUrl = "http://tr626987:Jenlop01@10.21.7.10:82";
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
         console.log('Proxy', JSON.stringify(proxiedRequest));
-        request.post(urlSession, {}, (err, response, body) => {
+        proxiedRequest.post(urlSession, {}, (err, response, body) => {
             console.log('Body:' + body);
             console.log('Erro:' + err);
             console.log('Response: ' + JSON.stringify(response));

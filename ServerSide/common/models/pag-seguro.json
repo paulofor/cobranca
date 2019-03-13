@@ -121,7 +121,14 @@
       ]
     },
     "AderePlano": {
-      "accepts": [],
+      "accepts": [
+        {
+          "arg": "creditCardToken",
+          "type": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
       "returns": [
         {
           "arg": "saida",

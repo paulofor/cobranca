@@ -11,5 +11,12 @@
 </ion-header>
 
 <ion-content padding>
-<p><button ion-button (click)="criaPlano()" round>Cria Plano</button></p>
+  <p>session: {{idSession}}</p>
+  <p>
+    <button ion-button (click)="obtemTokenCartao()" round>Cria Token</button>
+  </p>
+  <p>Token: {{tokenGlobal}}</p>
+  <p>
+    <button ion-button (click)="enviaToken()" round>Envia Token</button>
+  </p>
 </ion-content>
