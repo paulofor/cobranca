@@ -345,7 +345,7 @@ module.exports = function (Pagseguro) {
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
 
         console.log('Proxy', JSON.stringify(proxiedRequest));
-        proxiedRequest.post(urlSession, {}, (err, response, body) => {
+        request.post(urlSession, {}, (err, response, body) => {
             console.log('Body:' + body);
             console.log('Erro:' + err);
             console.log('Response: ' + JSON.stringify(response));

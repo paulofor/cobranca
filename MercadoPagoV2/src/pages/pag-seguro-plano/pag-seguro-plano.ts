@@ -22,6 +22,7 @@ declare var PagSeguroDirectPayment: any;
 export class PagSeguroPlanoPage {
 
   idSession = '';
+  codigoFinal = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private pagSrv: PagSeguroApi) {
   }
@@ -89,6 +90,8 @@ export class PagSeguroPlanoPage {
     this.pagSrv.AderePlano(tokenGlobal)
       .subscribe((result) => {
         console.log('Result:' , result);
+        if (result.code)
+          this.codigoFinal = result.code;
       })
   }
 }
