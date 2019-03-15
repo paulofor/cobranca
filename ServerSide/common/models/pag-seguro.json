@@ -144,6 +144,17 @@
           "verb": "get"
         }
       ]
+    },
+    "CriaPlano": {
+      "accepts": [],
+      "returns": [],
+      "description": "",
+      "http": [
+        {
+          "path": "/criaPlano",
+          "verb": "get"
+        }
+      ]
     }
   }
 }

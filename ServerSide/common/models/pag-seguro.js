@@ -6,10 +6,10 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = 'CB4CBC8D23374F219598172EF26BEC37';
+    var token = '';
 
-    //var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
-    var urlSession = 'https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
+    var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
+    //var urlSession = 'https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
 
     var urlTransacao = 'https://ws.pagseguro.uol.com.br/v2/transactions?email=paulofore@gmail.com&token=' + token;
 
@@ -130,13 +130,13 @@ module.exports = function (Pagseguro) {
                 "value": 12,
                 "unit": "MONTHS"
             },
-            "amountPerPayment": 1.99,
+            "amountPerPayment": 6.99,
         }
     }
 
-     
+
     var aderePlanoVar = {
-        "plan": "62525B7BC6C6BB51149B0F97784AF965",
+        "plan": "3C9914D742428559946E7F8AF88F29C1",
         "sender": {
             "name": "Paulo Alexandre",
             "email": "paforest1970@sandbox.pagseguro.com.br",
@@ -192,10 +192,10 @@ module.exports = function (Pagseguro) {
     function getObjetoAderePlano(token) {
 
         var aderePlano = {
-            "plan": "62525B7BC6C6BB51149B0F97784AF965",
+            "plan": "E92722E0-F7F7-BB5C-C4DB-8F82ACF92613",
             "sender": {
                 "name": "Paulo Alexandre",
-                "email": "paforest1970@sandbox.pagseguro.com.br",
+                "email": "paforest1970@gmail.com",
                 "ip": "179.210.247.211",
                 "phone": {
                     "areaCode": "21",
@@ -250,9 +250,9 @@ module.exports = function (Pagseguro) {
 
     Pagseguro.AderePlano = function (creditCardToken, callback) {
 
-        console.log('  *****   Adere Plano ****** ' , creditCardToken);
+        console.log('  *****   Adere Plano ****** ', creditCardToken);
         var urlCriaPlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request?email=paulofore@gmail.com&token=' + token;
-        var urlAderePlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email=paulofore@gmail.com&token=' + token;
+        var urlAderePlano = 'https://ws.pagseguro.uol.com.br/pre-approvals?email=paulofore@gmail.com&token=' + token;
 
 
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
@@ -359,6 +359,39 @@ module.exports = function (Pagseguro) {
 
     };
 
+    /**
+     *
+     * @param {Function(Error)} callback
+     */
+    Pagseguro.CriaPlano = function (callback) {
+        console.log('  *****   Cria Plano ****** ');
+        var urlCriaPlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request?email=paulofore@gmail.com&token=' + token;
+        //var urlAderePlano = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email=paulofore@gmail.com&token=' + token;
+
+
+        var proxyUrl = "http://tr626987:Jenlop01@10.21.7.10:82";
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
+
+        //console.log('body: ', JSON.stringify(aderePlano));
+
+        var mensagem = {
+            url: urlCriaPlano,
+            headers: {
+                "Content-Type": "application/json;charset=ISO-8859-1",
+                "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
+            },
+            body: JSON.stringify(criaPlano)
+        }
+
+
+        request.post(urlCriaPlano, mensagem, (err, response, body) => {
+            //xml2js.parseString(body,callback);
+            console.log('Erro: ', err);
+            console.log('Body: ', body);
+            callback(err, JSON.parse(body));
+            //callback(null,{});
+        });
+    };
 
 
     /**
