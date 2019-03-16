@@ -192,7 +192,7 @@ module.exports = function (Pagseguro) {
     function getObjetoAderePlano(token) {
 
         var aderePlano = {
-            "plan": "E92722E0-F7F7-BB5C-C4DB-8F82ACF92613",
+            "plan": "E92722E0F7F7BB5CC4DB8F82ACF92613",
             "sender": {
                 "name": "Paulo Alexandre",
                 "email": "paforest1970@gmail.com",
@@ -260,6 +260,7 @@ module.exports = function (Pagseguro) {
 
         //console.log('body: ', JSON.stringify(aderePlano));
 
+
         var mensagem = {
             url: urlAderePlano,
             headers: {
@@ -269,7 +270,7 @@ module.exports = function (Pagseguro) {
             body: JSON.stringify(getObjetoAderePlano(creditCardToken))
         }
 
-
+        console.log('Body:' , JSON.stringify(mensagem.body));
         request.post(urlAderePlano, mensagem, (err, response, body) => {
             //xml2js.parseString(body,callback);
             console.log('Erro: ', err);
