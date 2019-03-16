@@ -135,58 +135,6 @@ module.exports = function (Pagseguro) {
     }
 
 
-    var aderePlanoVar = {
-        "plan": "3C9914D742428559946E7F8AF88F29C1",
-        "sender": {
-            "name": "Paulo Alexandre",
-            "email": "paforest1970@sandbox.pagseguro.com.br",
-            "ip": "179.210.247.211",
-            "phone": {
-                "areaCode": "21",
-                "number": "992902732"
-            },
-            "address": {
-                "street": "Rua Antonio Basilio",
-                "number": "204",
-                "complement": "apt 805",
-                "district": "Tijuca",
-                "city": "Rio de Janeiro",
-                "state": "RJ",
-                "country": "BRA",
-                "postalCode": "20511190"
-            },
-            "documents": [
-                {
-                    "type": "CPF",
-                    "value": "01114740780"
-                }
-
-            ]
-        },
-        "paymentMethod": {
-            "type": "CREDITCARD",
-            "creditCard": {
-                "token": "xxx",
-                "holder": {
-                    "name": "Paulo Alexandre",
-                    "birthDate": "19/08/1970",
-                    "phone": {
-                        "areaCode": "21",
-                        "number": "992902732"
-                    },
-                    "documents": [
-                        {
-                            "type": "CPF",
-                            "value": "01114740780"
-                        }
-                    ]
-                }
-            },
-
-        }
-    }
-
-
 
 
     function getObjetoAderePlano(token) {
@@ -243,6 +191,26 @@ module.exports = function (Pagseguro) {
         }
         return aderePlano;
     }
+
+
+    /**
+     * 
+     * @param {object} cliente 
+     * @param {Function(Error, object)} callback
+     */
+
+    Pagseguro.VerificaPagamento = function (cliente, callback) {
+
+        var urlConsulta = 'https://ws.pagseguro.uol.com.br/pre-approvals/notifications/notification-code';
+
+        var resultado;
+        // TODO
+        callback(null, resultado);
+    };
+
+
+
+
     /**
      *
      * @param {Function(Error, object)} callback
@@ -270,7 +238,7 @@ module.exports = function (Pagseguro) {
             body: JSON.stringify(getObjetoAderePlano(creditCardToken))
         }
 
-        console.log('Body:' , JSON.stringify(mensagem.body));
+        console.log('Body:', JSON.stringify(mensagem.body));
         request.post(urlAderePlano, mensagem, (err, response, body) => {
             //xml2js.parseString(body,callback);
             console.log('Erro: ', err);

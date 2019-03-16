@@ -65,11 +65,11 @@ export class PagSeguroPlanoPage {
   obtemTokenCartao() {
     console.log('--> Chamou token card');
     PagSeguroDirectPayment.createCardToken({
-      cardNumber: '4111111111111111', // Número do cartão de crédito
+      cardNumber: '4230750260896463', // Número do cartão de crédito
       brand: 'visa', // Bandeira do cartão
-      cvv: '013', // CVV do cartão
-      expirationMonth: '12', // Mês da expiração do cartão
-      expirationYear: '2026', // Ano da expiração do cartão, é necessário os 4 dígitos.
+      cvv: '797', // CVV do cartão
+      expirationMonth: '01', // Mês da expiração do cartão
+      expirationYear: '2027', // Ano da expiração do cartão, é necessário os 4 dígitos.
       success: function (response) {
         // Retorna o cartão tokenizado.
         console.log('TokenCard Sucesso:' + JSON.stringify(response.card.token));
