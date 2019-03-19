@@ -16,6 +16,8 @@ import { SocketDriver } from './shared/sdk/sockets/socket.driver';
 import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
 import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
 import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
+import { PagSeguroAssinaturaDadoClientePage } from '../pages/pag-seguro-assinatura-dado-cliente/pag-seguro-assinatura-dado-cliente';
+import { PagSeguroAssinaturaDadoCartaoPage } from '../pages/pag-seguro-assinatura-dado-cartao/pag-seguro-assinatura-dado-cartao';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
     TestePage,
     TestePagSeguroPage,
     PagSeguroLightPage,
-    PagSeguroPlanoPage
+    PagSeguroPlanoPage,
+    PagSeguroAssinaturaDadoClientePage,
+    PagSeguroAssinaturaDadoCartaoPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
     TestePage,
     TestePagSeguroPage,
     PagSeguroLightPage,
-    PagSeguroPlanoPage
+    PagSeguroPlanoPage,
+    PagSeguroAssinaturaDadoClientePage,
+    PagSeguroAssinaturaDadoCartaoPage
   ],
   providers: [
 
