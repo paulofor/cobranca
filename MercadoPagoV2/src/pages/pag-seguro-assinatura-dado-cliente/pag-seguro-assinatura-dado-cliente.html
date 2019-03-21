@@ -1,20 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>PagSeguroAssinaturaDadoCliente</ion-title>
+    <ion-title>Endereço</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <form (ngSubmit)="logForm()">
     <ion-item>
-      <ion-label floating>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
+      <ion-label floating>Rua</ion-label>
+      <ion-input [(ngModel)]="address.street" name="street"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Endereço</ion-label>
-      <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
+      <ion-label floating>Número</ion-label>
+      <ion-input [(ngModel)]="address.number" name="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Complemento</ion-label>
+      <ion-input [(ngModel)]="address.complement" name="complement"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Bairro</ion-label>
+      <ion-input [(ngModel)]="address.district" name="district"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Município</ion-label>
+      <ion-input [(ngModel)]="address.city" name="city"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Estado</ion-label>
+      <ion-input [(ngModel)]="address.state" name="state"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>CEP</ion-label>
+      <ion-input [(ngModel)]="address.postalCode" name="postalCode"></ion-input>
     </ion-item>
     
-    <button ion-button type="submit" block>Add Todo</button>
+    <button ion-button type="submit" block>Enviar</button>
   </form>
 </ion-content>

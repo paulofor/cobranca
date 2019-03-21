@@ -11,6 +11,7 @@ import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
 import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
 import { PagSeguroAssinaturaDadoClientePage } from '../pages/pag-seguro-assinatura-dado-cliente/pag-seguro-assinatura-dado-cliente';
 import { PagSeguroAssinaturaDadoCartaoPage } from '../pages/pag-seguro-assinatura-dado-cartao/pag-seguro-assinatura-dado-cartao';
+import { PagSeguroAssinaturaDadoIdentificacaoPage } from '../pages/pag-seguro-assinatura-dado-identificacao/pag-seguro-assinatura-dado-identificacao';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +28,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title : 'PagSeguroCliente' , component: PagSeguroAssinaturaDadoClientePage },
+      { title : 'PagSeguroEndereco' , component: PagSeguroAssinaturaDadoClientePage },
+      { title: 'PagSeguroIdentificacao' , component: PagSeguroAssinaturaDadoIdentificacaoPage },
       { title : 'PagSeguroCartao' , component: PagSeguroAssinaturaDadoCartaoPage },
       { title: 'PagSeguroPlano' , component: PagSeguroPlanoPage },
       { title: 'PagSeguro' , component: TestePagSeguroPage },

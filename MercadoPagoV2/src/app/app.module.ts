@@ -18,6 +18,7 @@ import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
 import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
 import { PagSeguroAssinaturaDadoClientePage } from '../pages/pag-seguro-assinatura-dado-cliente/pag-seguro-assinatura-dado-cliente';
 import { PagSeguroAssinaturaDadoCartaoPage } from '../pages/pag-seguro-assinatura-dado-cartao/pag-seguro-assinatura-dado-cartao';
+import { PagSeguroAssinaturaDadoIdentificacaoPage } from '../pages/pag-seguro-assinatura-dado-identificacao/pag-seguro-assinatura-dado-identificacao';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PagSeguroAssinaturaDadoCartaoPage } from '../pages/pag-seguro-assinatur
     PagSeguroLightPage,
     PagSeguroPlanoPage,
     PagSeguroAssinaturaDadoClientePage,
-    PagSeguroAssinaturaDadoCartaoPage
+    PagSeguroAssinaturaDadoCartaoPage,
+    PagSeguroAssinaturaDadoIdentificacaoPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { PagSeguroAssinaturaDadoCartaoPage } from '../pages/pag-seguro-assinatur
     PagSeguroLightPage,
     PagSeguroPlanoPage,
     PagSeguroAssinaturaDadoClientePage,
-    PagSeguroAssinaturaDadoCartaoPage
+    PagSeguroAssinaturaDadoCartaoPage,
+    PagSeguroAssinaturaDadoIdentificacaoPage
   ],
   providers: [
 
