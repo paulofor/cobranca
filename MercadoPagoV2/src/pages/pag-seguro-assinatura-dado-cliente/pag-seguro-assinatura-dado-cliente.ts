@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Assinatura } from '../../app/shared/assinatura';
 
 /**
  * Generated class for the PagSeguroAssinaturaDadoClientePage page.
@@ -17,14 +18,7 @@ export class PagSeguroAssinaturaDadoClientePage {
 
 
   address = {
-    "street": "",
-    "number": "",
-    "complement": "",
-    "district": "",
-    "city": "",
-    "state": "",
-    "country": "BRA",
-    "postalCode": ""
+   
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -36,7 +30,8 @@ export class PagSeguroAssinaturaDadoClientePage {
 
    
   logForm() {
-    console.log(this.address)
+    console.log(Assinatura);
+    //Assinatura.address = this.address;
   }
 
 }

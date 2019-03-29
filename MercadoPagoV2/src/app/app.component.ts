@@ -28,9 +28,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title : 'PagSeguroEndereco' , component: PagSeguroAssinaturaDadoClientePage },
-      { title: 'PagSeguroIdentificacao' , component: PagSeguroAssinaturaDadoIdentificacaoPage },
-      { title : 'PagSeguroCartao' , component: PagSeguroAssinaturaDadoCartaoPage },
+      { title : '1- Endereco' , component: PagSeguroAssinaturaDadoClientePage },
+      { title:  '2- Identificacao' , component: PagSeguroAssinaturaDadoIdentificacaoPage },
+      { title : '3- Cartao' , component: PagSeguroAssinaturaDadoCartaoPage },
       { title: 'PagSeguroPlano' , component: PagSeguroPlanoPage },
       { title: 'PagSeguro' , component: TestePagSeguroPage },
      
@@ -50,6 +50,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 }

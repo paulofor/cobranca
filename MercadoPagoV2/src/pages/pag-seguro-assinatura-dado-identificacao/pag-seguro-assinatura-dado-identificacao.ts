@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Assinatura } from '../../app/shared/assinatura';
 
 /**
  * Generated class for the PagSeguroAssinaturaDadoIdentificacaoPage page.
@@ -40,6 +41,7 @@ export class PagSeguroAssinaturaDadoIdentificacaoPage {
 
   logForm() {
     console.log(this.sender);
+    
   }
 
 }
