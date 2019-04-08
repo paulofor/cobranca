@@ -18,20 +18,29 @@ export class PagSeguroAssinaturaDadoClientePage {
 
 
   address = {
-   
+    "street": "Rua Antonio Basilio",
+    "number": "",
+    "complement": "",
+    "district": "",
+    "city": "",
+    "state": "",
+    "country": "BRA",
+    "postalCode": ""
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log('Assinatura:', Assinatura.sender.address.street);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PagSeguroAssinaturaDadoClientePage');
   }
 
-   
+
   logForm() {
-    console.log(Assinatura);
-    //Assinatura.address = this.address;
+    console.log('Antes ' + Assinatura);
+    Assinatura.sender.address = this.address;
+    console.log('Depois ' + Assinatura);
   }
 
 }
