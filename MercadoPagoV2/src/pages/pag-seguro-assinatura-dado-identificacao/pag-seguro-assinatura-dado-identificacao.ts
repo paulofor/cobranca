@@ -17,17 +17,27 @@ import { Assinatura } from '../../app/shared/assinatura';
 export class PagSeguroAssinaturaDadoIdentificacaoPage {
 
   sender = {
-    "name" : "",
-    "email" : "",
-    "ip" : "",
-    "phone" : {
-      "areaCode" : "",
-      "number" : ""
-    } ,
-    "documents" : [
+    "name": "",
+    "email": "",
+    "ip": "",
+    "phone": {
+      "areaCode": "",
+      "number": ""
+    },
+    "address": {
+      "street": "",
+      "number": "",
+      "complement": "",
+      "district": "",
+      "city": "",
+      "state": "",
+      "country": "BRA",
+      "postalCode": ""
+    },
+    "documents": [
       {
-      "type" : "CPF",
-      "value" : ""
+        "type": "CPF",
+        "value": ""
       }
     ]
   }
@@ -37,11 +47,13 @@ export class PagSeguroAssinaturaDadoIdentificacaoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PagSeguroAssinaturaDadoIdentificacaoPage');
+    this.sender.address = Assinatura.sender.address;
   }
 
   logForm() {
-    console.log(this.sender);
-    
+    console.log('Antes ' + JSON.stringify(Assinatura));
+    Assinatura.sender = this.sender;
+    console.log('Depois ' + JSON.stringify(Assinatura));
   }
 
 }

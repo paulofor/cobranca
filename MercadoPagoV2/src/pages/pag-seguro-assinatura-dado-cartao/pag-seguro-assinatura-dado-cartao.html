@@ -11,5 +11,12 @@
 </ion-header>
 
 <ion-content padding>
-
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label floating>Rua</ion-label>
+      <ion-input [(ngModel)]="address.street" name="street"></ion-input>
+    </ion-item>
+        
+    <button ion-button type="submit" block>Enviar</button>
+  </form>
 </ion-content>

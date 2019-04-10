@@ -18,7 +18,7 @@ export class PagSeguroAssinaturaDadoClientePage {
 
 
   address = {
-    "street": "Rua Antonio Basilio",
+    "street": "",
     "number": "",
     "complement": "",
     "district": "",
@@ -34,13 +34,14 @@ export class PagSeguroAssinaturaDadoClientePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PagSeguroAssinaturaDadoClientePage');
+    this.address = Assinatura.sender.address;
   }
 
 
   logForm() {
-    console.log('Antes ' + Assinatura);
+    console.log('Antes ' + JSON.stringify(Assinatura));
     Assinatura.sender.address = this.address;
-    console.log('Depois ' + Assinatura);
+    console.log('Depois ' + JSON.stringify(Assinatura));
   }
 
 }
