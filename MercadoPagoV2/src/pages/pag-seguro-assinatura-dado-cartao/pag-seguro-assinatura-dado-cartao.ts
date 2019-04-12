@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Assinatura } from '../../app/shared/assinatura';
 
 /**
  * Generated class for the PagSeguroAssinaturaDadoCartaoPage page.
@@ -15,32 +16,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PagSeguroAssinaturaDadoCartaoPage {
 
+
   cartao = {
-    "type": "CREDITCARD",
-    "creditCard": {
-      "token": "",
-      "holder": {
-        "name": "",
-        "birthDate": "",
-        "phone": {
-          "areaCode": "",
-          "number": ""
-        },
-        "documents": [
-          {
-            "type": "CPF",
-            "value": ""
-          }
-        ]
-      }
-    }
+    "nome" : "",
+    "bandeira" : "",
+    "numero" : "",
+    "anoExpira" : "",
+    "mesExpira" : "" ,
+    "verificador" : ""
   }
+
+
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PagSeguroAssinaturaDadoCartaoPage');
+    
   }
 
 }

@@ -13,10 +13,26 @@
 <ion-content padding>
   <form (ngSubmit)="logForm()">
     <ion-item>
-      <ion-label floating>Rua</ion-label>
-      <ion-input [(ngModel)]="address.street" name="street"></ion-input>
+      <ion-label floating>Nome no Cartão</ion-label>
+      <ion-input [(ngModel)]="cartao.name" name="nome"></ion-input>
     </ion-item>
-        
+    <ion-item>
+      <ion-label floating>Número</ion-label>
+      <ion-input [(ngModel)]="cartao.numero" name="numero"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Mês de Expiracao</ion-label>
+      <ion-input [(ngModel)]="cartao.mesExpira" name="mesExpira"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Ano de Expiracao</ion-label>
+      <ion-input [(ngModel)]="cartao.anoExpira" name="anoExpira"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>CVV</ion-label>
+      <ion-input [(ngModel)]="cartao.verificador" name="verificador"></ion-input>
+    </ion-item>
+
     <button ion-button type="submit" block>Enviar</button>
   </form>
 </ion-content>

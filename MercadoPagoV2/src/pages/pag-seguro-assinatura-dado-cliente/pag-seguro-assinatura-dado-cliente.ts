@@ -39,9 +39,9 @@ export class PagSeguroAssinaturaDadoClientePage {
 
 
   logForm() {
-    console.log('Antes ' + JSON.stringify(Assinatura));
-    Assinatura.sender.address = this.address;
-    console.log('Depois ' + JSON.stringify(Assinatura));
+    //console.log('Antes ' + JSON.stringify(Assinatura));
+    //Assinatura.sender.address = this.address;
+    //console.log('Depois ' + JSON.stringify(Assinatura));
   }
 
 }
