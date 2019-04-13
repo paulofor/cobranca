@@ -12,6 +12,7 @@ import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';
 import { PagSeguroAssinaturaDadoClientePage } from '../pages/pag-seguro-assinatura-dado-cliente/pag-seguro-assinatura-dado-cliente';
 import { PagSeguroAssinaturaDadoCartaoPage } from '../pages/pag-seguro-assinatura-dado-cartao/pag-seguro-assinatura-dado-cartao';
 import { PagSeguroAssinaturaDadoIdentificacaoPage } from '../pages/pag-seguro-assinatura-dado-identificacao/pag-seguro-assinatura-dado-identificacao';
+import { InicioFluxoPage } from '../pages/inicio-fluxo/inicio-fluxo';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,19 +22,20 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title : '1- Endereco' , component: PagSeguroAssinaturaDadoClientePage },
-      { title:  '2- Identificacao' , component: PagSeguroAssinaturaDadoIdentificacaoPage },
-      { title : '3- Cartao' , component: PagSeguroAssinaturaDadoCartaoPage },
-      { title: 'PagSeguroPlano' , component: PagSeguroPlanoPage },
-      { title: 'PagSeguro' , component: TestePagSeguroPage },
-     
+      { title: 'Fluxo Assinatura', component: InicioFluxoPage },
+      { title: '1- Endereco', component: PagSeguroAssinaturaDadoClientePage },
+      { title: '2- Identificacao', component: PagSeguroAssinaturaDadoIdentificacaoPage },
+      { title: '3- Cartao', component: PagSeguroAssinaturaDadoCartaoPage },
+      { title: 'PagSeguroPlano', component: PagSeguroPlanoPage },
+      { title: 'PagSeguro', component: TestePagSeguroPage },
+
     ];
 
   }

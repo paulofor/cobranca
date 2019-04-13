@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Assinatura } from '../../app/shared/assinatura';
+import { PagSeguroAssinaturaDadoCartaoPage } from '../pag-seguro-assinatura-dado-cartao/pag-seguro-assinatura-dado-cartao';
+import { PagSeguroAssinaturaDadoIdentificacaoPage } from '../pag-seguro-assinatura-dado-identificacao/pag-seguro-assinatura-dado-identificacao';
 
 /**
  * Generated class for the PagSeguroAssinaturaDadoClientePage page.
@@ -42,6 +44,13 @@ export class PagSeguroAssinaturaDadoClientePage {
     //console.log('Antes ' + JSON.stringify(Assinatura));
     //Assinatura.sender.address = this.address;
     //console.log('Depois ' + JSON.stringify(Assinatura));
+  }
+
+  avancar() {
+    this.navCtrl.push(PagSeguroAssinaturaDadoCartaoPage);
+  }
+  voltar() {
+    this.navCtrl.push(PagSeguroAssinaturaDadoIdentificacaoPage);
   }
 
 }

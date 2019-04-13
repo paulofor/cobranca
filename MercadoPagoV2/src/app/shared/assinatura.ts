@@ -11,7 +11,7 @@ export var Assinatura = {
             "number": ""
         },
         "address": {
-            "street": "Rua Antonio Basilio",
+            "street": "",
             "number": "",
             "complement": "",
             "district": "",

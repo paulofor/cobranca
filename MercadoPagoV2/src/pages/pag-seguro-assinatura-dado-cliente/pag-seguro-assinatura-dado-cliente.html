@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="logForm()">
+  <form >
     <ion-item>
       <ion-label floating>Rua</ion-label>
       <ion-input [(ngModel)]="address.street" name="street"></ion-input>
@@ -35,6 +35,7 @@
       <ion-input [(ngModel)]="address.postalCode" name="postalCode"></ion-input>
     </ion-item>
     
-    <button ion-button type="submit" block>Enviar</button>
+    <button ion-button (click)="voltar()">Voltar</button>
+    <button ion-button (click)="avancar()">Avançar</button>
   </form>
 </ion-content>
