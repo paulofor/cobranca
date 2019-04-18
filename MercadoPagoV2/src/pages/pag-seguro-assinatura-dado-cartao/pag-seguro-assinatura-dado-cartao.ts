@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Assinatura } from '../../app/shared/assinatura';
+import { PagSeguroApi } from '../../app/shared/sdk';
 
 /**
  * Generated class for the PagSeguroAssinaturaDadoCartaoPage page.
@@ -8,12 +9,16 @@ import { Assinatura } from '../../app/shared/assinatura';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var PagSeguroDirectPayment: any;
 
 @IonicPage()
 @Component({
   selector: 'page-pag-seguro-assinatura-dado-cartao',
   templateUrl: 'pag-seguro-assinatura-dado-cartao.html',
 })
+
+
+
 export class PagSeguroAssinaturaDadoCartaoPage {
 
 
@@ -29,12 +34,87 @@ export class PagSeguroAssinaturaDadoCartaoPage {
 
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private pagSrv: PagSeguroApi) {
   }
+
+  enviar() {
+    this.obtemTokenCartao();
+  }
+ 
+  // tratementos do cartao
+
+
+  idSession = '';
+  codigoHash = '';
+  tokenCartao = '';
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PagSeguroAssinaturaDadoCartaoPage');
-    
+    console.log('ionViewDidLoad TestePagSeguroPage');
+    this.pagSrv.ObtemSessao()
+      .subscribe((resp) => {
+        //console.log('Err:' + JSON.stringify(err));
+        //console.log('Resp:' + JSON.stringify(resp));
+        this.idSession = resp.idSessao;
+        this.setSessao();
+      })
+  }
+  setSessao() {
+    PagSeguroDirectPayment.setSessionId(this.idSession);
+    PagSeguroDirectPayment.getPaymentMethods({
+      amount: 1.15,
+      success: function (response) {
+        console.log('Resultado setSessao() ok' + new Date());
+      },
+      error: function (response) {
+        console.log('MeioPgto Falha:' + JSON.stringify(response));
+      },
+      complete: function (response) {
+      }
+    });
+  }
+  obtemHashCliente() {
+    console.log('--> Vai buscar o hash');
+    PagSeguroDirectPayment.onSenderHashReady(function (response) {
+      console.log('onSender-response:' + JSON.stringify(response));
+      if (response.status == 'error') {
+        console.log('onSender:' + response.message);
+        return false;
+      }
+      console.log('This:' + this);
+      //console.log('IdSessao: ' + this.idSession);
+      //console.log('HashAtual:' + this.codigoHash);
+      //console.log('response.senderHash:' , response.senderHash);
+      //hashGlobal = response.senderHash; //Hash estará disponível nesta variável.
+      console.log('Hash: ' ,  response.senderHash);
+      hashGlobal = response.senderHash;
+      //this.setHash(hash);
+    });
   }
 
+  obtemTokenCartao() {
+    console.log('--> Chamou token card');
+    PagSeguroDirectPayment.createCardToken({
+      cardNumber: this.cartao.numero, // Número do cartão de crédito
+      brand: this.cartao.bandeira, // Bandeira do cartão
+      cvv: this.cartao.verificador, // CVV do cartão
+      expirationMonth: this.cartao.mesExpira, // Mês da expiração do cartão
+      expirationYear: this.cartao.anoExpira, // Ano da expiração do cartão, é necessário os 4 dígitos.
+      success: function (response) {
+        // Retorna o cartão tokenizado.
+        console.log('TokenCard Sucesso:' + JSON.stringify(response.card.token));
+        tokenGlobal = response.card.token;
+      },
+      error: function (response) {
+        // Callback para chamadas que falharam.
+        console.log('TokenCard Erro:' + JSON.stringify(response));
+      },
+      complete: function (response) {
+        // Callback para todas chamadas.
+        //console.log('TokenCard Completo:' + JSON.stringify(response));
+      }
+    });
+  }
 }
+
+export var tokenGlobal : string;
+export var hashGlobal : string;
