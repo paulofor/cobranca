@@ -39,18 +39,21 @@ export class PagSeguroAssinaturaDadoClientePage {
     this.address = Assinatura.sender.address;
   }
 
-
-  logForm() {
-    //console.log('Antes ' + JSON.stringify(Assinatura));
-    //Assinatura.sender.address = this.address;
-    //console.log('Depois ' + JSON.stringify(Assinatura));
-  }
-
   avancar() {
     this.navCtrl.push(PagSeguroAssinaturaDadoCartaoPage);
   }
   voltar() {
     this.navCtrl.push(PagSeguroAssinaturaDadoIdentificacaoPage);
+  }
+
+  preencher() {
+    this.address.street = 'Rua Antonio Basilio';
+    this.address.number = '204';
+    this.address.complement = 'apt. 805';
+    this.address.district = 'Tijuca';
+    this.address.city = 'Rio de Janeiro';
+    this.address.state = 'RJ';
+    this.address.postalCode = '20511190';
   }
 
 }

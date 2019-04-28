@@ -51,14 +51,17 @@ export class PagSeguroAssinaturaDadoIdentificacaoPage {
     this.sender = Assinatura.sender;
   }
 
-  logForm() {
-    console.log('Antes ' + JSON.stringify(Assinatura));
-    Assinatura.sender = this.sender;
-    console.log('Depois ' + JSON.stringify(Assinatura));
+  avancar() {
+    console.log('PagSeguroAssinaturaDadoIdentificacaoPage:Assinatura: ' , Assinatura);
+    this.navCtrl.push(PagSeguroAssinaturaDadoClientePage);
   }
 
-  avancar() {
-    this.navCtrl.push(PagSeguroAssinaturaDadoClientePage);
+  preenhcer() {
+    this.sender.name = 'Paulo Alexandre';
+    this.sender.email = 'paulofore@gmail.com';
+    this.sender.phone.areaCode = '21';
+    this.sender.phone.number = '992902732';
+    this.sender.documents[0].value = '01114740780'
   }
 
 }
