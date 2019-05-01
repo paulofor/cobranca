@@ -52,18 +52,20 @@ export class PagSeguroAssinaturaDadoCartaoPage {
     console.log('ionViewDidLoad TestePagSeguroPage');
     this.pagSrv.ObtemSessao()
       .subscribe((resp) => {
-        //console.log('Err:' + JSON.stringify(err));
-        //console.log('Resp:' + JSON.stringify(resp));
+        console.log('Resp- Sessao:' + JSON.stringify(resp));
         this.idSession = resp.idSessao;
-        this.setSessao();
+        this.obtemMeioPagamento(1.15);
+        this.obtemHashCliente();
       })
   }
-  setSessao() {
+ 
+  obtemMeioPagamento(valor:number) {
     PagSeguroDirectPayment.setSessionId(this.idSession);
     PagSeguroDirectPayment.getPaymentMethods({
-      amount: 1.15,
+      amount: valor,
       success: function (response) {
-        console.log('Resultado setSessao() ok' + new Date());
+        console.log('Meio pagto:' + JSON.stringify(response));
+        this.obtemHashCliente();
       },
       error: function (response) {
         console.log('MeioPgto Falha:' + JSON.stringify(response));
@@ -72,7 +74,9 @@ export class PagSeguroAssinaturaDadoCartaoPage {
       }
     });
   }
+  
   obtemHashCliente() {
+    PagSeguroDirectPayment.setSessionId(this.idSession);
     console.log('--> Vai buscar o hash');
     PagSeguroDirectPayment.onSenderHashReady(function (response) {
       console.log('onSender-response:' + JSON.stringify(response));
@@ -80,14 +84,8 @@ export class PagSeguroAssinaturaDadoCartaoPage {
         console.log('onSender:' + response.message);
         return false;
       }
-      console.log('This:' + this);
-      //console.log('IdSessao: ' + this.idSession);
-      //console.log('HashAtual:' + this.codigoHash);
-      //console.log('response.senderHash:' , response.senderHash);
-      //hashGlobal = response.senderHash; //Hash estará disponível nesta variável.
       console.log('Hash: ' ,  response.senderHash);
       hashGlobal = response.senderHash;
-      //this.setHash(hash);
     });
   }
 
@@ -105,12 +103,10 @@ export class PagSeguroAssinaturaDadoCartaoPage {
         tokenGlobal = response.card.token;
       },
       error: function (response) {
-        // Callback para chamadas que falharam.
         console.log('TokenCard Erro:' + JSON.stringify(response));
       },
       complete: function (response) {
         // Callback para todas chamadas.
-        //console.log('TokenCard Completo:' + JSON.stringify(response));
       }
     });
   }
