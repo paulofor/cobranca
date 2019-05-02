@@ -21,6 +21,7 @@ declare var PagSeguroDirectPayment: any;
 
 export class PagSeguroAssinaturaDadoCartaoPage {
 
+  codigoFinal = '';
 
   cartao = {
     "nome" : "",
@@ -101,6 +102,7 @@ export class PagSeguroAssinaturaDadoCartaoPage {
         // Retorna o cartão tokenizado.
         console.log('TokenCard Sucesso:' + JSON.stringify(response.card.token));
         tokenGlobal = response.card.token;
+        this.finalizar();
       },
       error: function (response) {
         console.log('TokenCard Erro:' + JSON.stringify(response));
@@ -110,6 +112,26 @@ export class PagSeguroAssinaturaDadoCartaoPage {
       }
     });
   }
+
+
+  preencher() {
+    this.cartao.numero = '1234123412341234';
+    this.cartao.verificador = '177';
+    this.cartao.mesExpira = '01';
+    this.cartao.anoExpira = '2020';
+    this.cartao.bandeira = 'visa';
+  }
+
+  finalizar() {
+    console.log('Entrou em finalizar');
+    this.pagSrv.AderePlano(tokenGlobal)
+      .subscribe((result) => {
+        console.log('Result:' , result);
+        if (result.code)
+          this.codigoFinal = result.code;
+      })
+  }
+
 }
 
 export var tokenGlobal : string;
