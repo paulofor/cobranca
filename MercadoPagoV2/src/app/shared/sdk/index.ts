@@ -45,11 +45,22 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CookieBrowser } from './storage/cookie.browser';
 import { StorageBrowser } from './storage/storage.browser';
 import { SocketBrowser } from './sockets/socket.browser';
-
+import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
-import { MercadoPagoApi } from './services/custom/MercadoPago';
+import { ExemploModeloApi } from './services/custom/ExemploModelo';
+import { TreinoAcademia_GrupoMuscularApi } from './services/custom/TreinoAcademia_GrupoMuscular';
+import { TreinoAcademia_SerieTreinoApi } from './services/custom/TreinoAcademia_SerieTreino';
+import { TreinoAcademia_ExercicioApi } from './services/custom/TreinoAcademia_Exercicio';
+import { TreinoAcademia_ExecucaoItemSerieApi } from './services/custom/TreinoAcademia_ExecucaoItemSerie';
+import { TreinoAcademia_CargaPlanejadaApi } from './services/custom/TreinoAcademia_CargaPlanejada';
+import { TreinoAcademia_DiaTreinoApi } from './services/custom/TreinoAcademia_DiaTreino';
+import { TreinoAcademia_ItemSerieApi } from './services/custom/TreinoAcademia_ItemSerie';
+import { TreinoAcademia_RegistroPesoApi } from './services/custom/TreinoAcademia_RegistroPeso';
+import { TreinoAcademia_UsuarioApi } from './services/custom/TreinoAcademia_Usuario';
+import { TesteBaseApi } from './services/custom/TesteBase';
+import { TreinoAcademia_ExecucaoCargaApi } from './services/custom/TreinoAcademia_ExecucaoCarga';
 import { PagSeguroApi } from './services/custom/PagSeguro';
 /**
 * @module SDKBrowserModule
@@ -82,11 +93,22 @@ export class SDKBrowserModule {
         SDKModels,
         RealTime,
         UserApi,
-        MercadoPagoApi,
+        ExemploModeloApi,
+        TreinoAcademia_GrupoMuscularApi,
+        TreinoAcademia_SerieTreinoApi,
+        TreinoAcademia_ExercicioApi,
+        TreinoAcademia_ExecucaoItemSerieApi,
+        TreinoAcademia_CargaPlanejadaApi,
+        TreinoAcademia_DiaTreinoApi,
+        TreinoAcademia_ItemSerieApi,
+        TreinoAcademia_RegistroPesoApi,
+        TreinoAcademia_UsuarioApi,
+        TesteBaseApi,
+        TreinoAcademia_ExecucaoCargaApi,
         PagSeguroApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
-
+        { provide: SocketDriver, useClass: SocketBrowser }
       ]
     };
   }

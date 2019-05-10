@@ -9,15 +9,16 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PagSeguro } from '../../models/PagSeguro';
+import { ExemploModelo } from '../../models/ExemploModelo';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { TesteBase } from '../../models/TesteBase';
 
 
 /**
- * Api services for the `PagSeguro` model.
+ * Api services for the `ExemploModelo` model.
  */
 @Injectable()
-export class PagSeguroApi extends BaseLoopBackApi {
+export class ExemploModeloApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -27,6 +28,215 @@ export class PagSeguroApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
+  }
+
+  /**
+   * Localize um item relacionado por ID para listaTeste.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @param {any} fk Chave estrangeira para listaTeste
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ExemploModelo` object.)
+   * </em>
+   */
+  public findByIdListaTeste(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Excluir um item relacionado por ID para listaTeste.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @param {any} fk Chave estrangeira para listaTeste
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyByIdListaTeste(id: any, fk: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Atualizar um item relacionado por ID para listaTeste.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @param {any} fk Chave estrangeira para listaTeste
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ExemploModelo` object.)
+   * </em>
+   */
+  public updateByIdListaTeste(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "PUT";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste/:fk";
+    let _routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * listaTeste consultas de ExemploModelo.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @param {object} filter 
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ExemploModelo` object.)
+   * </em>
+   */
+  public getListaTeste(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof filter !== 'undefined' && filter !== null) _urlParams.filter = filter;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Cria uma nova instância no listaTeste deste modelo.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ExemploModelo` object.)
+   * </em>
+   */
+  public createListaTeste(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Exclui todos os listaTeste deste modelo.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public deleteListaTeste(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * listaTeste contagens de ExemploModelo.
+   *
+   * @param {any} id ExemploModelo id
+   *
+   * @param {object} where Criteria to match model instances
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` - 
+   */
+  public countListaTeste(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/ExemploModelos/:id/listaTeste/count";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
   }
 
   /**
@@ -42,13 +252,13 @@ export class PagSeguroApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
+   * This usually means the response is a `ExemploModelo` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros";
+    "/ExemploModelos";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -61,7 +271,7 @@ export class PagSeguroApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id PagSeguro id
+   * @param {any} id ExemploModelo id
    *
    * @param {object} data Request data.
    *
@@ -73,13 +283,13 @@ export class PagSeguroApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
+   * This usually means the response is a `ExemploModelo` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/:id";
+    "/ExemploModelos/:id";
     let _routeParams: any = {
       id: id
     };
@@ -92,13 +302,11 @@ export class PagSeguroApi extends BaseLoopBackApi {
   }
 
   /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
+   * submit da tela exemplo
    *
    * @param {object} data Request data.
    *
-   * This method does not accept any data. Supply an empty object.
+   *  - `item` – `{object}` - 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -106,229 +314,59 @@ export class PagSeguroApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
+   * This usually means the response is a `ExemploModelo` object.)
    * </em>
    */
-  public IniciaSessao(customHeaders?: Function): Observable<any> {
+  public SubmitExemplo(item: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/iniciaSessao";
+    "/ExemploModelos/submitExemplo";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
+    if (typeof item !== 'undefined' && item !== null) _urlParams.item = item;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
+   * Cria uma nova instância no listaTeste deste modelo.
+   *
+   * @param {any} id ExemploModelo id
    *
    * @param {object} data Request data.
    *
-   *  - `senderHash` – `{string}` - 
+   * This method expects a subset of model properties as request parameters.
    *
-   *  - `creditCardToken` – `{string}` - 
-   *
-   *  - `installmentQuantity` – `{string}` - 
-   *
-   *  - `installmentValue` – `{string}` - 
-   *
-   *  - `noInterestInstallmentQuantity` – `{string}` - 
-   *
-   * @returns {object} An empty reference that will be
+   * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
+   * This usually means the response is a `ExemploModelo` object.)
    * </em>
    */
-  public CheckoutCartao(senderHash: any = {}, creditCardToken: any = {}, installmentQuantity: any = {}, installmentValue: any = {}, noInterestInstallmentQuantity: any = {}, customHeaders?: Function): Observable<any> {
+  public createManyListaTeste(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/checkoutCartao";
-    let _routeParams: any = {};
-    let _postBody: any = {};
+    "/ExemploModelos/:id/listaTeste";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
     let _urlParams: any = {};
-    if (typeof senderHash !== 'undefined' && senderHash !== null) _urlParams.senderHash = senderHash;
-    if (typeof creditCardToken !== 'undefined' && creditCardToken !== null) _urlParams.creditCardToken = creditCardToken;
-    if (typeof installmentQuantity !== 'undefined' && installmentQuantity !== null) _urlParams.installmentQuantity = installmentQuantity;
-    if (typeof installmentValue !== 'undefined' && installmentValue !== null) _urlParams.installmentValue = installmentValue;
-    if (typeof noInterestInstallmentQuantity !== 'undefined' && noInterestInstallmentQuantity !== null) _urlParams.noInterestInstallmentQuantity = noInterestInstallmentQuantity;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * Data properties:
-   *
-   *  - `idSessao` – `{string}` - 
-   */
-  public ObtemSessao(customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/obtemSessao";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {object} data Request data.
-   *
-   *  - `xml` – `{object}` - 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
-   * </em>
-   */
-  public PagamentoCaixaBranca(xml: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/pagamentoCaixaBranca";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof xml !== 'undefined' && xml !== null) _urlParams.xml = xml;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {string} creditCardToken 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
-   * </em>
-   */
-  public AderePlano(creditCardToken: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/aderePlano";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof creditCardToken !== 'undefined' && creditCardToken !== null) _urlParams.creditCardToken = creditCardToken;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * This method returns no data.
-   */
-  public CriaPlano(customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/criaPlano";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {object} cliente 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
-   * </em>
-   */
-  public VerificaPagamento(cliente: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/verificaPagamento";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof cliente !== 'undefined' && cliente !== null) _urlParams.cliente = cliente;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {object} data Request data.
-   *
-   *  - `dadoCliente` – `{object}` - 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `PagSeguro` object.)
-   * </em>
-   */
-  public AderePlanoTreino(dadoCliente: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/aderePlanoTreino";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof dadoCliente !== 'undefined' && dadoCliente !== null) _urlParams.dadoCliente = dadoCliente;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `PagSeguro`.
+   * i.e. `ExemploModelo`.
    */
   public getModelName() {
-    return "PagSeguro";
+    return "ExemploModelo";
   }
 }
