@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { TestePage } from '../pages/teste/teste';
+
 import { TestePagSeguroPage } from '../pages/teste-pag-seguro/teste-pag-seguro';
 import { PagSeguroLightPage } from '../pages/pag-seguro-light/pag-seguro-light';
 import { PagSeguroPlanoPage } from '../pages/pag-seguro-plano/pag-seguro-plano';

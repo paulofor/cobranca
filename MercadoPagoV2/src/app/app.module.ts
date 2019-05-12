@@ -8,8 +8,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TestePage } from '../pages/teste/teste';
-import { MercadoPagoApi, SDKModels, LoopBackAuth, InternalStorage, PagSeguroApi } from './shared/sdk/index';
+import { SDKModels, LoopBackAuth, InternalStorage, PagSeguroApi } from './shared/sdk/index';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { SocketConnection } from './shared/sdk/sockets/socket.connections';
 import { SocketDriver } from './shared/sdk/sockets/socket.driver';
@@ -26,7 +25,7 @@ import { InicioFluxoPage } from '../pages/inicio-fluxo/inicio-fluxo';
     MyApp,
     HomePage,
     ListPage,
-    TestePage,
+
     TestePagSeguroPage,
     PagSeguroLightPage,
     PagSeguroPlanoPage,
@@ -45,7 +44,7 @@ import { InicioFluxoPage } from '../pages/inicio-fluxo/inicio-fluxo';
     MyApp,
     HomePage,
     ListPage,
-    TestePage,
+
     TestePagSeguroPage,
     PagSeguroLightPage,
     PagSeguroPlanoPage,
@@ -65,7 +64,6 @@ import { InicioFluxoPage } from '../pages/inicio-fluxo/inicio-fluxo';
     SDKModels,
     LoopBackAuth,
     InternalStorage,
-    MercadoPagoApi,
     PagSeguroApi
 
   ]

@@ -102,7 +102,10 @@ export class PagSeguroAssinaturaDadoCartaoPage {
         // Retorna o cartão tokenizado.
         console.log('TokenCard Sucesso:' + JSON.stringify(response.card.token));
         tokenGlobal = response.card.token;
+        console.log('Vai chamar finalizar');
         this.finalizar();
+
+       
       },
       error: function (response) {
         console.log('TokenCard Erro:' + JSON.stringify(response));
@@ -123,8 +126,8 @@ export class PagSeguroAssinaturaDadoCartaoPage {
   }
 
   finalizar() {
-    console.log('Entrou em finalizar');
-    this.pagSrv.AderePlano(tokenGlobal)
+    console.log('Entrou em finalizar:' , Assinatura);
+    this.pagSrv.AderePlanoTreino(Assinatura)
       .subscribe((result) => {
         console.log('Result:' , result);
         if (result.code)
