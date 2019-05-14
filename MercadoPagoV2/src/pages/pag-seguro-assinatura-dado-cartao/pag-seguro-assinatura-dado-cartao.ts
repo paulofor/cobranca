@@ -126,6 +126,10 @@ export class PagSeguroAssinaturaDadoCartaoPage {
   }
 
   finalizar() {
+    Assinatura.paymentMethod.creditCard.holder.phone = Assinatura.sender.phone;
+    Assinatura.paymentMethod.creditCard.token = tokenGlobal;
+    Assinatura.paymentMethod.creditCard.holder.name = Assinatura.sender.name;
+    //Assinatura.paymentMethod.creditCard.holder.birthDate = Assinatura.sender.
     console.log('Entrou em finalizar:' , Assinatura);
     this.pagSrv.AderePlanoTreino(Assinatura)
       .subscribe((result) => {
