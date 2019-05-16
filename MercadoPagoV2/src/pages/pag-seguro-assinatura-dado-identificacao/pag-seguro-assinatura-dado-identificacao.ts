@@ -17,10 +17,13 @@ import { PagSeguroAssinaturaDadoClientePage } from '../pag-seguro-assinatura-dad
 })
 export class PagSeguroAssinaturaDadoIdentificacaoPage {
 
+  dataNascimento = "";
+
   sender = {
     "name": "",
     "email": "",
-    "ip": "",
+
+    "hash" : "",
     "phone": {
       "areaCode": "",
       "number": ""
@@ -52,6 +55,7 @@ export class PagSeguroAssinaturaDadoIdentificacaoPage {
   }
 
   avancar() {
+    Assinatura.paymentMethod.creditCard.holder.birthDate = this.dataNascimento;
     console.log('PagSeguroAssinaturaDadoIdentificacaoPage:Assinatura: ' , Assinatura);
     this.navCtrl.push(PagSeguroAssinaturaDadoClientePage);
   }

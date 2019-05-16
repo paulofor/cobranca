@@ -5,7 +5,8 @@ export var Assinatura = {
     "sender": {
         "name": "",
         "email": "",
-        "ip": "",
+
+        "hash" : "",
         "phone": {
             "areaCode": "",
             "number": ""

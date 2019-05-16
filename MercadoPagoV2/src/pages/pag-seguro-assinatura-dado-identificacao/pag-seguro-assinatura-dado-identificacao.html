@@ -32,6 +32,10 @@
       <ion-label floating>CPF</ion-label>
       <ion-input [(ngModel)]="sender.documents[0].value" name="value"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label floating>Data Nascimento</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataNascimento" name="dataNascimento"></ion-datetime>
+    </ion-item>
     
     <button ion-button type="submit" block>Avançar</button>
   </form>
