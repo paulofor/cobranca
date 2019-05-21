@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Assinatura } from '../../app/shared/assinatura';
 import { PagSeguroAssinaturaDadoClientePage } from '../pag-seguro-assinatura-dado-cliente/pag-seguro-assinatura-dado-cliente';
+import { DatePipe } from '@angular/common';
 
 /**
  * Generated class for the PagSeguroAssinaturaDadoIdentificacaoPage page.
@@ -17,7 +18,7 @@ import { PagSeguroAssinaturaDadoClientePage } from '../pag-seguro-assinatura-dad
 })
 export class PagSeguroAssinaturaDadoIdentificacaoPage {
 
-  dataNascimento = "";
+  dataNascimento: Date = new Date();
 
   sender = {
     "name": "",
@@ -55,7 +56,8 @@ export class PagSeguroAssinaturaDadoIdentificacaoPage {
   }
 
   avancar() {
-    Assinatura.paymentMethod.creditCard.holder.birthDate = this.dataNascimento;
+    var datePipe:DatePipe = new DatePipe('en-US');
+    Assinatura.paymentMethod.creditCard.holder.birthDate = datePipe.transform(this.dataNascimento, 'dd/MM/yyyy');
     console.log('PagSeguroAssinaturaDadoIdentificacaoPage:Assinatura: ' , Assinatura);
     this.navCtrl.push(PagSeguroAssinaturaDadoClientePage);
   }
