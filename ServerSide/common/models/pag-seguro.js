@@ -201,11 +201,33 @@ module.exports = function (Pagseguro) {
 
     Pagseguro.VerificaPagamento = function (cliente, callback) {
 
-        var urlConsulta = 'https://ws.pagseguro.uol.com.br/pre-approvals/notifications/notification-code';
+        var urlConsulta = 'https://ws.pagseguro.uol.com.br/pre-approvals/notifications/' + cliente +'?email=paulofore@gmail.com&token=' + token;
 
-        var resultado;
-        // TODO
-        callback(null, resultado);
+        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
+
+        var mensagem = {
+            url: urlConsulta,
+            headers: {
+                "content-type": "application/x-www-form-urlencoded; charset=ISO-8859-1",
+            },
+            body: {}
+        }
+
+
+        proxiedRequest.post(urlConsulta, mensagem, (err, response, body) => {
+            xml2js.parseString(body, (err, result) => {
+                //console.log('Body:' + JSON.stringify(result));
+                if (result.errors) {
+                    result.errors.error.forEach(erro => {
+                        console.log('Erro: ', erro.message);
+                    })
+                    callback(result.errors, null);
+                } else {
+                    callback(null, result);
+                }
+            });
+        })
     };
 
 

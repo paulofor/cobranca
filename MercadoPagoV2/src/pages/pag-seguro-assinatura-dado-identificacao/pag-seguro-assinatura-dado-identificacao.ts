@@ -64,7 +64,7 @@ export class PagSeguroAssinaturaDadoIdentificacaoPage {
 
   preenhcer() {
     this.sender.name = 'Paulo Alexandre';
-    this.sender.email = 'paulofore@gmail.com';
+    this.sender.email = 'paforest1970@gmail.com';
     this.sender.phone.areaCode = '21';
     this.sender.phone.number = '992902732';
     this.sender.documents[0].value = '01114740780'
