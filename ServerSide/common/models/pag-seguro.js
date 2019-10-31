@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 module.exports = function (Pagseguro) {
 
-    var token = '';
+    var token = 'A';
 
     var urlSession = 'https://ws.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
     //var urlSession = 'https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=paulofore@gmail.com&token=' + token;
@@ -201,7 +201,34 @@ module.exports = function (Pagseguro) {
 
     Pagseguro.VerificaPagamento = function (cliente, callback) {
 
-        var urlConsulta = 'https://ws.pagseguro.uol.com.br/pre-approvals/notifications/' + cliente +'?email=paulofore@gmail.com&token=' + token;
+        console.log('Cliente: ', cliente);
+
+        var urlVerificaPorNotificacao = 'https://ws.pagseguro.uol.com.br/pre-approvals/notifications/' + cliente + '?email=paulofore@gmail.com&token=' + token;
+
+
+        var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
+        var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
+
+        //console.log('body: ', JSON.stringify(aderePlano));
+
+        var mensagem = {
+            headers: {
+                "Content-Type": "application/json;charset=ISO-8859-1",
+                "Accept": "application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1"
+            },
+        }
+
+        request(urlVerificaPorNotificacao, mensagem, function (error, response, body) {
+            console.log('error:', error); // Print the error if one occurred
+            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            console.log('body:', body); // Print the HTML for the Google homepage.
+            callback(error, JSON.parse(body));
+        });
+    };
+
+
+    /*
+    var urlConsulta = 'https://ws.pagseguro.uol.com.br/pre-approvals/notifications/' + cliente +'?email=paulofore@gmail.com&token=' + token;
 
         var proxyUrl = "http://tr626987:Eureka48@10.21.7.10:82";
         var proxiedRequest = request.defaults({ 'proxy': proxyUrl });
@@ -228,7 +255,7 @@ module.exports = function (Pagseguro) {
                 }
             });
         })
-    };
+    */
 
 
 

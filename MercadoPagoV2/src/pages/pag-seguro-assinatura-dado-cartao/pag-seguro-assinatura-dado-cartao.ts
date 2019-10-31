@@ -118,10 +118,10 @@ export class PagSeguroAssinaturaDadoCartaoPage {
 
 
   preencher() {
-    this.cartao.numero = '1234123412341234';
-    this.cartao.verificador = '177';
+    this.cartao.numero = '123456789888';
+    this.cartao.verificador = '919';
     this.cartao.mesExpira = '01';
-    this.cartao.anoExpira = '2020';
+    this.cartao.anoExpira = '2027';
     this.cartao.bandeira = 'visa';
   }
 
