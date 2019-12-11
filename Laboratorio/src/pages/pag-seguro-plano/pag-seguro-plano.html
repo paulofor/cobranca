@@ -1,0 +1,23 @@
+<!--
+  Generated template for the PagSeguroPlanoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>PagSeguroPlano</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>session: {{idSession}}</p>
+  <p>
+    <button ion-button (click)="obtemTokenCartao()" round>Cria Token</button>
+  </p>
+  <p>Token: {{tokenGlobal}}</p>
+  <p>
+    <button ion-button (click)="enviaToken()" round>Envia Token</button>
+  </p>
+  <p>Finalizacao: {{codigoFinal}}</p>
+</ion-content>
