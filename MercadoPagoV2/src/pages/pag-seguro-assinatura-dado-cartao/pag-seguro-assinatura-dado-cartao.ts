@@ -61,6 +61,7 @@ export class PagSeguroAssinaturaDadoCartaoPage {
   }
  
   obtemMeioPagamento(valor:number) {
+    console.log('Set session: ' , this.idSession);
     PagSeguroDirectPayment.setSessionId(this.idSession);
     PagSeguroDirectPayment.getPaymentMethods({
       amount: valor,
@@ -118,10 +119,10 @@ export class PagSeguroAssinaturaDadoCartaoPage {
 
 
   preencher() {
-    this.cartao.numero = '123456789888';
-    this.cartao.verificador = '919';
+    this.cartao.numero = '4230750300477027';
+    this.cartao.verificador = '019';
     this.cartao.mesExpira = '01';
-    this.cartao.anoExpira = '2027';
+    this.cartao.anoExpira = '2024';
     this.cartao.bandeira = 'visa';
   }
 

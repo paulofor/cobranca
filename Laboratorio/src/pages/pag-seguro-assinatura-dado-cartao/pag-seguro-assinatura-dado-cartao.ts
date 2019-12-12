@@ -102,8 +102,10 @@ export class PagSeguroAssinaturaDadoCartaoPage {
         // Retorna o cartão tokenizado.
         console.log('TokenCard Sucesso:' + JSON.stringify(response.card.token));
         tokenGlobal = response.card.token;
+        Assinatura.paymentMethod.creditCard.token = response.card.token;
         console.log('Vai chamar finalizar');
-        this.finalizar();
+        console.log('Token Global: ' , tokenGlobal);
+        //this.finalizar();
 
        
       },
@@ -126,8 +128,9 @@ export class PagSeguroAssinaturaDadoCartaoPage {
   }
 
   finalizar() {
+
     Assinatura.paymentMethod.creditCard.holder.phone = Assinatura.sender.phone;
-    Assinatura.paymentMethod.creditCard.token = tokenGlobal;
+    //Assinatura.paymentMethod.creditCard.token = tokenGlobal;
     Assinatura.paymentMethod.creditCard.holder.name = Assinatura.sender.name;
     Assinatura.paymentMethod.creditCard.holder.documents = Assinatura.sender.documents;
     Assinatura.sender.hash = hashGlobal;

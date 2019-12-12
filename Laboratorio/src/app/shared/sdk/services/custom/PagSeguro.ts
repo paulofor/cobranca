@@ -314,15 +314,17 @@ export class PagSeguroApi extends BaseLoopBackApi {
    * </em>
    */
   public AderePlanoTreino(dadoCliente: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
+    console.log('DadoCliente: ' , JSON.stringify(dadoCliente));
+    let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath()
     //let _url: string = '//localhost:3000' 
     + "/" + LoopBackConfig.getApiVersion() +
-    "/PagSeguros/aderePlano";
+    "/PagSeguros/aderePlanoTreino";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
     if (typeof dadoCliente !== 'undefined' && dadoCliente !== null) _urlParams.dadoCliente = dadoCliente;
+    console.log('DadoCliente: ' , JSON.stringify(_urlParams.dadoCliente));
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
